@@ -14,7 +14,7 @@ function PrivateRoute({
     <Route
       {...rest}
       render={props =>
-        // fakeAuth.isAuthenticated ? (
+        // TODO fakeAuth.isAuthenticated ? (
         false ? (
           <RouteComponent {...props} />
         ) : (

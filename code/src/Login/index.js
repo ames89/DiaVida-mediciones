@@ -1,8 +1,9 @@
-import React from 'react';
 import Loadable from 'react-loadable';
+
+import Loading from '../common/Loading';
 
 const Login = Loadable({
   loader: () => import('./Component'),
-  loading: () => <h1>Loading</h1>
+  loading: Loading
 });
 export default Login;
