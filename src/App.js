@@ -35,8 +35,13 @@ class App extends Component {
     return (
       <Router>
         <div className={styles.App}>
+          <Route exact path="/" render={() => <Redirect to="/login" />} />
+          <Route path="/login" component={Login}
+          render={()=>{
+            
+          }}
+          />
           <PrivateRoute path="/app" component={<h1>prot</h1>} />
-          <Route path="/login" component={Login} />
         </div>
       </Router>
     );
