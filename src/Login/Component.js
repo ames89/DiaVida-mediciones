@@ -1,4 +1,10 @@
 import React from 'react';
 
-const Login = () => <h1>login</h1>;
+import styles from './style.module.scss';
+
+const Login = () => (
+  <div className={styles.body}>
+    <div className={styles.logo} />
+  </div>
+);
 export default Login;

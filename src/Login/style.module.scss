@@ -1,0 +1,23 @@
+.body {
+  align-items: center;
+  background-color: #38a297;
+  background-image: url('../assets/noise-pattern.png');
+  background-repeat: repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+}
+
+.logo {
+  background-image: url('./logo2.svg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  position: absolute;
+  top: 40px;
+  width: 300px;
+  z-index: 1;
+}

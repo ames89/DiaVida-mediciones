@@ -4,12 +4,7 @@ import Login from './Login';
 
 import styles from './App.module.scss';
 
-function PrivateRoute({
-  component: RouteComponent,
-  ...rest
-}: {
-  component: any
-}) {
+function PrivateRoute({ component: RouteComponent, ...rest }) {
   return (
     <Route
       {...rest}
@@ -34,13 +29,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className={styles.App}>
+        <div className={styles.app}>
           <Route exact path="/" render={() => <Redirect to="/login" />} />
-          <Route path="/login" component={Login}
-          render={()=>{
-            
-          }}
-          />
+          <Route path="/login" component={Login} />
           <PrivateRoute path="/app" component={<h1>prot</h1>} />
         </div>
       </Router>
