@@ -44,6 +44,12 @@ class Login extends Component {
       .then(data => {
         return fb.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
       })
+      .then(() => {
+        this.props.history.push({
+          pathname: '/app',
+          state: {}
+        });
+      })
       .catch(err => {
         const { code } = err;
         let errorMsg;
