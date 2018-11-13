@@ -1,7 +1,9 @@
-import firebaseLib from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/firestore';
 
+// CONFIG FIREBASE
 const config = {
   apiKey: 'AIzaSyCNve2Q7OP06iAS6k_Fuj5KoNYYwW7sX4E',
   authDomain: 'diavida-dev-costa-rica.firebaseapp.com',
@@ -11,5 +13,21 @@ const config = {
   messagingSenderId: '730070265788'
 };
 
-export const firebase = firebaseLib;
-export default firebase.initializeApp(config);
+// INITIALIZE FIREBASEAPP
+const firebaseInitApp = firebase.initializeApp(config);
+
+// FIX FOR NEW VERSIONS
+const firestore = firebaseInitApp.firestore();
+firestore.settings({ timestampsInSnapshots: true });
+
+// ENABLE PERSISTENCE
+firebaseInitApp
+  .firestore()
+  .enablePersistence()
+  .catch(err => {
+    console.log('enablePersistence error', err);
+  });
+
+// EXPORTS
+export { firebase };
+export default firebaseInitApp;
