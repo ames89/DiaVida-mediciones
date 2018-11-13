@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from 'react-router-dom';
 import Login from './Login';
 
 import styles from './App.module.scss';
@@ -30,9 +35,11 @@ class App extends Component {
     return (
       <Router>
         <div className={styles.app}>
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/app" component={<h1>prot</h1>} />
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/app" component={<h1>prot</h1>} />
+          </Switch>
         </div>
       </Router>
     );
