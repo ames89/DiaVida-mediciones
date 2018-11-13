@@ -7,7 +7,7 @@ import {
   TextField
 } from '@material-ui/core';
 
-import fb from '../utils/firebase';
+import fb, { firebase } from '../Store/firebase';
 
 import styles from './style.module.scss';
 
@@ -42,7 +42,7 @@ class Login extends Component {
       .signInWithEmailAndPassword(email, pass)
       .finally(() => this.setState({ isLoading: false }))
       .then(data => {
-        console.log('auth', data);
+        return fb.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
       })
       .catch(err => {
         const { code } = err;

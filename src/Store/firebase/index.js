@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebaseLib from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -10,4 +10,6 @@ const config = {
   storageBucket: 'diavida-dev-costa-rica.appspot.com',
   messagingSenderId: '730070265788'
 };
+
+export const firebase = firebaseLib;
 export default firebase.initializeApp(config);
