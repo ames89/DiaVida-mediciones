@@ -25,7 +25,7 @@ firebaseInitApp
   .firestore()
   .enablePersistence()
   .catch(err => {
-    console.log('enablePersistence error', err);
+    console.error('enablePersistence error', err);
   });
 
 // EXPORTS
