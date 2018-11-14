@@ -4,21 +4,23 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MainRoute, PrivateRoute } from './utils';
 
 import Login from '../Login';
+import MainAppView from '../Campist';
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <MainRoute />} />
       <Route path="/login" component={Login} />
-      <PrivateRoute path="/app" component={() => <h1>prot</h1>} />
+      <PrivateRoute path="/app" component={MainAppView} />
     </Switch>
   );
 };
 
-export default () => {
+const RoutesContainer = () => {
   return (
     <Router>
       <Routes />
     </Router>
   );
 };
+export default RoutesContainer;

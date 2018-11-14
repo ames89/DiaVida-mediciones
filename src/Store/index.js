@@ -1,18 +1,14 @@
 import { addReducer, setGlobal } from 'reactn';
 
 setGlobal({
-  user: null
+  headerTitle: ''
 });
 
 // Reducers
-addReducer('fetchData', () =>
-  fetch('index.html')
-    .then(response => response.text())
-    .then(html => ({
-      data: html
-    }))
-);
 
-addReducer('incrementX', state => ({
-  x: state.x + 1
-}));
+addReducer('setHeaderTitle', (state, headerTitle) => {
+  return {
+    ...state,
+    headerTitle
+  };
+});
