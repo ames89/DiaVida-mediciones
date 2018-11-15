@@ -1,13 +1,9 @@
-import React, { Component } from 'reactn';
+import Loadable from 'react-loadable';
 
-class List extends Component {
-  componentDidMount() {
-    this.global.setHeaderTitle('Lista de Campistas');
-  }
+import Loading from '../../common/Loading';
 
-  render() {
-    return <h2>list stuff</h2>;
-  }
-}
-
-export default List;
+const Login = Loadable({
+  loader: () => import('./Component'),
+  loading: Loading
+});
+export default Login;
