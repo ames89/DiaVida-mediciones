@@ -18,19 +18,7 @@ class List extends Component {
   componentDidMount() {
     this.global.setHeaderTitle('Lista de Campistas');
 
-    getAllCampists(doc => {
-      const data = doc.data();
-      data.id = doc.id;
-      const { campists } = this.state;
-      const index = campists.findIndex(camp => doc.id === camp.id);
-
-      if (index < 0) {
-        this.setState({ campists: [...campists, data] });
-      } else {
-        campists[index] = data;
-        this.setState({ campists: [...campists] });
-      }
-    });
+    this.hidrateCampists();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -60,6 +48,30 @@ class List extends Component {
     }
     return state;
   }
+
+  hidrateCampists = () => {
+    getAllCampists().then(docs => {
+      const campists = [];
+      docs.forEach(doc => {
+        const data = doc.data();
+        data.id = doc.id;
+        const index = campists.findIndex(camp => doc.id === camp.id);
+
+        if (index < 0) {
+          campists.push(data);
+        } else {
+          campists[index] = data;
+        }
+      });
+      const sorted = campists
+        .sort((a, b) =>
+          a.names.toLowerCase().localeCompare(b.names.toLowerCase())
+        )
+        .sort((a, b) => a.team.localeCompare(b.team));
+
+      this.setState({ campists: sorted });
+    });
+  };
 
   handleChangeFilter = e => {
     this.setState({ filter: e.target.value });

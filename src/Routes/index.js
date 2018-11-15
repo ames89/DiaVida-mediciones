@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
 import { MainRoute, PrivateRoute } from './utils';
 
@@ -12,6 +17,9 @@ const Routes = () => {
       <Route exact path="/" render={() => <MainRoute />} />
       <Route path="/login" component={Login} />
       <PrivateRoute path="/app" component={MainAppView} />
+      <Route>
+        <Redirect to="/" />
+      </Route>
     </Switch>
   );
 };
