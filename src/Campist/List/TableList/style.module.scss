@@ -1,31 +1,33 @@
+@import '../../../colors.scss';
+
 .table-cell-color {
-  width: 10px;
-  min-width: 10px;
   max-width: 10px;
+  min-width: 10px;
   padding: 0;
+  width: 10px;
 
   &-amarillo {
     @extend .table-cell-color;
-    background-color: #d3d300;
+    background-color: $team-amarillo;
   }
 
   &-azul {
     @extend .table-cell-color;
-    background-color: #0000c3;
+    background-color: $team-azul;
   }
 
   &-morado {
     @extend .table-cell-color;
-    background-color: #720c72;
+    background-color: $team-morado;
   }
 
   &-rojo {
     @extend .table-cell-color;
-    background-color: #da0000;
+    background-color: $team-rojo;
   }
 
   &-verde {
     @extend .table-cell-color;
-    background-color: #00a800;
+    background-color: $team-verde;
   }
 }

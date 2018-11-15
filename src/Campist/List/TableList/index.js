@@ -7,7 +7,7 @@ import {
   TableRow
 } from '@material-ui/core';
 
-import styles from './TableList.module.scss';
+import styles from './style.module.scss';
 
 class DataTable extends Component {
   static defaultProps = {
