@@ -1,6 +1,6 @@
 import React, { Component } from 'reactn';
-import { Paper, TextField, InputAdornment } from '@material-ui/core';
-import { Search } from '@material-ui/icons';
+import { Paper, TextField, InputAdornment, Button } from '@material-ui/core';
+import { Search, Add as AddIcon } from '@material-ui/icons';
 
 import { getAllCampists } from '../../Store/firebase/Campists';
 
@@ -69,22 +69,34 @@ class List extends Component {
     const { campistsFiltered } = this.state;
 
     return (
-      <Paper className={styles['container-paper']} square elevation={12}>
-        <TextField
-          value={this.state.filter}
-          onChange={this.handleChangeFilter}
-          className={styles['search-input']}
-          label="Encuentre un campista"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Search />
-              </InputAdornment>
-            )
+      <div>
+        <Paper className={styles['container-paper']} square elevation={12}>
+          <TextField
+            value={this.state.filter}
+            onChange={this.handleChangeFilter}
+            className={styles['search-input']}
+            label="Encuentre un campista"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Search />
+                </InputAdornment>
+              )
+            }}
+          />
+          <Table rows={campistsFiltered} />
+        </Paper>
+        <Button
+          className={styles['fab-button']}
+          color="primary"
+          variant="fab"
+          onClick={() => {
+            this.props.history.push('/app/new-campist');
           }}
-        />
-        <Table rows={campistsFiltered} />
-      </Paper>
+        >
+          <AddIcon />
+        </Button>
+      </div>
     );
   }
 }

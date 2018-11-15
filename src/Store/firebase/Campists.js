@@ -4,8 +4,8 @@ export const getAllCampists = render => {
   const query = firebase
     .firestore()
     .collection('campists')
-    .orderBy('team', 'asc');
-
+    .orderBy('team', 'asc')
+    .orderBy('age', 'asc');
   getDocumentsInQuery(query, render);
 };
 

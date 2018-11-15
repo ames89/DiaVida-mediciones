@@ -7,6 +7,13 @@ const Routes = props => {
   return (
     <Switch>
       <Route path="/app/" exact component={List} />
+      <Route
+        path="/app/new-campist"
+        exact
+        render={() => {
+          return <h1>asd</h1>;
+        }}
+      />
     </Switch>
   );
 };

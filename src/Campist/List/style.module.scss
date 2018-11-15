@@ -1,9 +1,15 @@
 .container-paper {
-  margin: 20px;
+  margin: 20px 20px 80px 20px;
   display: flex;
   flex-direction: column;
 }
 
 .search-input {
   margin: 20px 30px 20px 30px;
+}
+
+.fab-button {
+  position: fixed;
+  bottom: 15px;
+  right: 25px;
 }
