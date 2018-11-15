@@ -2,7 +2,6 @@ import React, { Component } from 'reactn';
 import { Paper, TextField, InputAdornment } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 
-// import fb from '../../Store/firebase';
 import { getAllCampists } from '../../Store/firebase/Campists';
 
 import Table from './TableList';
@@ -35,22 +34,25 @@ class List extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { campists, filter } = state;
+    const { campists } = state;
+    const filter = state.filter
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
     if (filter) {
       state.campistsFiltered = campists.filter(campist => {
         const allText = Object.values(campist)
           .join(',')
-          .toLowerCase();
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
         let contains = true;
 
-        filter
-          .toLowerCase()
-          .split(' ')
-          .forEach(word => {
-            if (!allText.includes(word)) {
-              contains = false;
-            }
-          });
+        filter.split(' ').forEach(word => {
+          if (!allText.includes(word)) {
+            contains = false;
+          }
+        });
         return contains;
       });
     } else {
@@ -67,7 +69,7 @@ class List extends Component {
     const { campistsFiltered } = this.state;
 
     return (
-      <Paper className={styles.container} square elevation={12}>
+      <Paper className={styles['container-paper']} square elevation={12}>
         <TextField
           value={this.state.filter}
           onChange={this.handleChangeFilter}

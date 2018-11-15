@@ -9,7 +9,7 @@ export default class Header extends Component {
   };
   render() {
     return (
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" color="inherit">
             {this.props.title}
