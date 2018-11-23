@@ -1,3 +1,3 @@
-import Loader from '../common/Loader';
+import Loader from '../../common/Loader';
 
 export default Loader(() => import('./Component'));

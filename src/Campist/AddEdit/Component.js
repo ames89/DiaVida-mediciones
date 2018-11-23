@@ -1,116 +1,47 @@
 import React, { Component } from 'reactn';
-import { Paper, TextField, InputAdornment, Button } from '@material-ui/core';
-import { Search, Add as AddIcon } from '@material-ui/icons';
-
-import { getAllCampists } from '../../Store/firebase/Campists';
-
-import Table from './TableList';
+import { Paper, AppBar, Tabs, Tab } from '@material-ui/core';
 
 import styles from './style.module.scss';
 
-class List extends Component {
-  state = {
-    campists: [],
-    campistsFiltered: [],
-    filter: ''
-  };
+class AddEdit extends Component {
+  state = {};
 
   componentDidMount() {
-    this.global.setHeaderTitle('Lista de Campistas');
-
-    this.hidrateCampists();
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    const { campists } = state;
-    const filter = state.filter
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-    if (filter) {
-      state.campistsFiltered = campists.filter(campist => {
-        const allText = Object.values(campist)
-          .join(',')
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '');
-        let contains = true;
-
-        filter.split(' ').forEach(word => {
-          if (!allText.includes(word)) {
-            contains = false;
-          }
-        });
-        return contains;
-      });
+    if (
+      this.props &&
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      this.global.setHeaderTitle('Editar campista');
     } else {
-      state.campistsFiltered = campists;
+      this.global.setHeaderTitle('Agregar campista');
     }
-    return state;
   }
-
-  hidrateCampists = () => {
-    getAllCampists().then(docs => {
-      const campists = [];
-      docs.forEach(doc => {
-        const data = doc.data();
-        data.id = doc.id;
-        const index = campists.findIndex(camp => doc.id === camp.id);
-
-        if (index < 0) {
-          campists.push(data);
-        } else {
-          campists[index] = data;
-        }
-      });
-      const sorted = campists
-        .sort((a, b) =>
-          a.names.toLowerCase().localeCompare(b.names.toLowerCase())
-        )
-        .sort((a, b) => a.team.localeCompare(b.team));
-
-      this.setState({ campists: sorted });
-    });
-  };
-
-  handleChangeFilter = e => {
-    this.setState({ filter: e.target.value });
-  };
 
   render() {
-    const { campistsFiltered } = this.state;
-
     return (
       <div>
         <Paper className={styles['container-paper']} square elevation={12}>
-          <TextField
-            value={this.state.filter}
-            onChange={this.handleChangeFilter}
-            className={styles['search-input']}
-            label="Encuentre un campista"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Search />
-                </InputAdornment>
-              )
-            }}
-          />
-          <Table rows={campistsFiltered} />
+          <AppBar position="static" color="secondary">
+            <Tabs
+              value={0}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              scrollable
+              scrollButtons="auto"
+            >
+              <Tab label="Detalles Básicos" />
+              <Tab label="Dosis basal" />
+              <Tab label="Esquema de Insulina" />
+              <Tab label="Porción de Alimentos" />
+            </Tabs>
+          </AppBar>
         </Paper>
-        <Button
-          className={styles['fab-button']}
-          color="primary"
-          variant="fab"
-          onClick={() => {
-            this.props.history.push('/app/new-campist');
-          }}
-        >
-          <AddIcon />
-        </Button>
       </div>
     );
   }
 }
 
-export default List;
+export default AddEdit;

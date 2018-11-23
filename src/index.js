@@ -4,10 +4,30 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'unorm';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { indigo, lightBlue } from '@material-ui/core/colors';
 
 import './Store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const theme = createMuiTheme({
+  palette: {
+    primary: indigo,
+    secondary: lightBlue
+  },
+  status: {
+    danger: 'orange'
+  },
+  typography: {
+    useNextVariants: true
+  }
+});
+
+ReactDOM.render(
+  <MuiThemeProvider theme={theme}>
+    <App />
+  </MuiThemeProvider>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

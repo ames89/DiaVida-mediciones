@@ -21,7 +21,6 @@ const getDocumentsInQuery = (query, render) => {
     if (!snapshot.size) {
       return render();
     }
-    debugger;
 
     snapshot.docChanges().forEach(change => {
       if (change.type === 'added') {
