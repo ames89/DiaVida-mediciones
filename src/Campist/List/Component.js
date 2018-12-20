@@ -1,5 +1,5 @@
 import React, { Component } from 'reactn';
-import { Paper, TextField, InputAdornment, Button } from '@material-ui/core';
+import { Paper, TextField, InputAdornment, Fab } from '@material-ui/core';
 import { Search, Add as AddIcon } from '@material-ui/icons';
 
 import { getAllCampists } from '../../Store/firebase/Campists';
@@ -98,16 +98,15 @@ class List extends Component {
           />
           <Table rows={campistsFiltered} />
         </Paper>
-        <Button
+        <Fab
           className={styles['fab-button']}
           color="primary"
-          variant="fab"
           onClick={() => {
             this.props.history.push('/app/new-campist');
           }}
         >
           <AddIcon />
-        </Button>
+        </Fab>
       </div>
     );
   }
