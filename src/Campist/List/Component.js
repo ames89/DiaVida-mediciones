@@ -79,6 +79,7 @@ class List extends Component {
 
   render() {
     const { campistsFiltered } = this.state;
+    const { history } = this.props;
 
     return (
       <div>
@@ -102,7 +103,7 @@ class List extends Component {
           className={styles['fab-button']}
           color="primary"
           onClick={() => {
-            this.props.history.push('/app/new-campist');
+            history.push('/app/new-campist');
           }}
         >
           <AddIcon />

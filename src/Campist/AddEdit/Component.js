@@ -1,10 +1,15 @@
 import React, { Component } from 'reactn';
 import { Paper, AppBar, Tabs, Tab } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
+
+import BasicDetails from './Tabs/BasicDetails';
 
 import styles from './style.module.scss';
 
 class AddEdit extends Component {
-  state = {};
+  state = {
+    tabPosition: 0
+  };
 
   componentDidMount() {
     if (
@@ -19,18 +24,23 @@ class AddEdit extends Component {
     }
   }
 
+  handleChange = (e, idx) => {
+    this.setState({ tabPosition: idx });
+  };
+
   render() {
+    const { tabPosition } = this.state;
     return (
       <div>
-        <Paper className={styles['container-paper']} square elevation={12}>
-          <AppBar position="static" color="secondary">
+        <Paper className={styles['container-app-bar']} elevation={12} square>
+          <AppBar position="static" color="default">
             <Tabs
-              value={0}
-              onChange={this.handleChange}
               indicatorColor="primary"
-              textColor="primary"
+              onChange={this.handleChange}
               scrollable
               scrollButtons="auto"
+              textColor="primary"
+              value={tabPosition}
             >
               <Tab label="Detalles Básicos" />
               <Tab label="Dosis basal" />
@@ -38,6 +48,16 @@ class AddEdit extends Component {
               <Tab label="Porción de Alimentos" />
             </Tabs>
           </AppBar>
+          <SwipeableViews
+            axis="x"
+            className={styles['swipe-container']}
+            index={tabPosition}
+            onChangeIndex={this.handleChange}
+          >
+            <BasicDetails />
+            <Paper>Item Two</Paper>
+            <Paper>Item Three</Paper>
+          </SwipeableViews>
         </Paper>
       </div>
     );
