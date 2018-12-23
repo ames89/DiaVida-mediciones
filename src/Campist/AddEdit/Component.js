@@ -33,6 +33,14 @@ class AddEdit extends Component {
     this.setState({ tabPosition: idx });
   };
 
+  goToPrev = () => {
+    this.setState({ tabPosition: this.state.tabPosition - 1 });
+  };
+
+  goToNext = () => {
+    this.setState({ tabPosition: this.state.tabPosition + 1 });
+  };
+
   render() {
     const { tabPosition } = this.state;
     return (
@@ -59,7 +67,7 @@ class AddEdit extends Component {
             index={tabPosition}
             onChangeIndex={this.handleChange}
           >
-            <BasicDetails handle />
+            <BasicDetails handleSubmit={this.goToNext} />
             <Paper>Item Two</Paper>
             <Paper>Item Three</Paper>
           </SwipeableViews>

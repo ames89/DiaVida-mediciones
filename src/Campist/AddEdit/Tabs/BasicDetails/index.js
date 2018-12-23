@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper, TextField, MenuItem, Button } from '@material-ui/core';
 
 import styles from './style.module.scss';
-import { COLORS } from '../../../../utils/Constants';
+import { COLORS } from '../../../../Constants/colors';
 
 class BasicDetails extends React.Component {
   static propTypes = {

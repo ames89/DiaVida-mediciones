@@ -7,7 +7,7 @@ import 'unorm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { indigo, lightBlue } from '@material-ui/core/colors';
 
-import './Store';
+import './Store/reducers';
 
 const theme = createMuiTheme({
   palette: {
