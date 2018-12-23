@@ -4,6 +4,15 @@ import { CAMPIST_DATA } from './storeNames';
 export const INSULIN_SCHEMA_SCALE = 'scale';
 export const INSULIN_SCHEMA_RATIO = 'ratio';
 
+export const BREAKFAST = 'breakfast';
+export const LUNCH = 'lunch';
+export const DINNER = 'dinner';
+
+export const LESS_THAN_80 = '<80';
+export const BETWEEN_81_120 = '81-120';
+export const BETWEEN_161_250 = '161-250';
+export const BIGGER_THAN_250 = '250<';
+
 export const basalDosage = {
   dosage: '',
   time: ''
@@ -20,7 +29,27 @@ export const store = {
     allergies: '',
     basalDosage: [{ ...basalDosage }],
     insulinSchemaType: '', // one of 'scale'|'ratio'
-    insulinSchemaScale: {},
+    insulinSchemaScale: {
+      [BREAKFAST]: {
+        [LESS_THAN_80]: '',
+        [BETWEEN_81_120]: '',
+        [BETWEEN_161_250]: '',
+        [BIGGER_THAN_250]: ''
+      },
+      [LUNCH]: {
+        [LESS_THAN_80]: '',
+        [BETWEEN_81_120]: '',
+        [BETWEEN_161_250]: '',
+        [BIGGER_THAN_250]: ''
+      },
+      [DINNER]: {
+        [LESS_THAN_80]: '',
+        [BETWEEN_81_120]: '',
+        [BETWEEN_161_250]: '',
+        [BIGGER_THAN_250]: ''
+      },
+      comment: ''
+    },
     insulinSchemaRatio: {}
   }
 };
@@ -61,3 +90,18 @@ addReducer('campistDataChangeInsulinSchemaType', (stage, type) => {
   newState[CAMPIST_DATA].insulinSchemaType = type;
   return newState;
 });
+
+addReducer(
+  'campistDataSetInsulinSchemaScaleValue',
+  (stage, time, type, value) => {
+    const newState = { ...stage };
+    if (value) {
+      newState[CAMPIST_DATA].insulinSchemaScale[time][type] = value;
+    } else {
+      value = type;
+      type = time;
+      newState[CAMPIST_DATA].insulinSchemaScale[time] = value;
+    }
+    return newState;
+  }
+);

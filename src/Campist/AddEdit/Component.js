@@ -32,7 +32,9 @@ class AddEdit extends Component {
   }
 
   handleChange = (e, idx) => {
-    this.setState({ tabPosition: idx });
+    if (process.env.NODE_ENV !== 'production') {
+      this.setState({ tabPosition: idx });
+    }
   };
 
   goToPrev = () => {
