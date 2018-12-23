@@ -13,6 +13,8 @@ export const BETWEEN_81_120 = '81-120';
 export const BETWEEN_161_250 = '161-250';
 export const BIGGER_THAN_250 = '250<';
 
+export const CORRECTION_FACTOR = 'correctionFactor';
+
 export const basalDosage = {
   dosage: '',
   time: ''
@@ -50,7 +52,13 @@ export const store = {
       },
       comment: ''
     },
-    insulinSchemaRatio: {}
+    insulinSchemaRatio: {
+      [BREAKFAST]: '',
+      [LUNCH]: '',
+      [DINNER]: '',
+      [CORRECTION_FACTOR]: '',
+      comment: ''
+    }
   }
 };
 
@@ -105,3 +113,10 @@ addReducer(
     return newState;
   }
 );
+
+addReducer('campistDataSetInsulinSchemaRatioValue', (stage, type, value) => {
+  const newState = { ...stage };
+  newState[CAMPIST_DATA].insulinSchemaRatio[type] = value;
+  console.log(newState[CAMPIST_DATA].insulinSchemaRatio);
+  return newState;
+});
