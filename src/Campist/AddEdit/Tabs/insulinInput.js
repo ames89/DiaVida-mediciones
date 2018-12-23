@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import InsulinTextInput from '../../../../common/InsulinTextInput';
+import InsulinTextInput from '../../../common/InsulinTextInput';
 
 const InsulinInput = props => {
   return (

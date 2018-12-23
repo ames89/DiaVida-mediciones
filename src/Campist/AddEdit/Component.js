@@ -8,6 +8,7 @@ import BasalDosage from './Tabs/2-BasalDosage';
 
 import styles from './style.module.scss';
 import InsulinSchema from './Tabs/3-InsulinSchema';
+import FoodPortions from './Tabs/4-FoodPortions';
 
 class AddEdit extends Component {
   static propTypes = {
@@ -18,7 +19,8 @@ class AddEdit extends Component {
     tabPosition: 0
   };
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log('willMount');
     if (
       this.props &&
       this.props.match &&
@@ -28,6 +30,7 @@ class AddEdit extends Component {
       this.global.setHeaderTitle('Editar campista');
     } else {
       this.global.setHeaderTitle('Agregar campista');
+      this.global.initCampistData();
     }
   }
 
@@ -79,7 +82,10 @@ class AddEdit extends Component {
               handleBack={this.goToPrev}
               handleSubmit={this.goToNext}
             />
-            <Paper>asdasdasd</Paper>
+            <FoodPortions
+              handleBack={this.goToPrev}
+              handleSubmit={this.goToNext}
+            />
           </SwipeableViews>
         </Paper>
       </div>

@@ -7,10 +7,6 @@ class Generic extends React.Component {
     handleBack: PropTypes.func
   };
 
-  componentDidMount() {
-    this.global.initCampistData();
-  }
-
   saveValue = item => e => {
     this.global.campistDataSetValue(item, e.target.value);
   };

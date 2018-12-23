@@ -1,6 +1,6 @@
 import React from 'reactn';
 import { Grid, Typography, TextField } from '@material-ui/core';
-import InsulinInput from './insulinInput';
+import InsulinInput from '../insulinInput';
 import { CAMPIST_DATA } from '../../../../Store/reducers/storeNames';
 import {
   LESS_THAN_80,

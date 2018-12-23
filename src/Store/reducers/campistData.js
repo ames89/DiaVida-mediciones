@@ -5,13 +5,21 @@ export const INSULIN_SCHEMA_SCALE = 'scale';
 export const INSULIN_SCHEMA_RATIO = 'ratio';
 
 export const BREAKFAST = 'breakfast';
+export const MORNING_SNACK = 'morningSnack';
 export const LUNCH = 'lunch';
+export const AFTERNOON_SNACK = 'afternoonSnack';
 export const DINNER = 'dinner';
+export const BEFORE_SLEEP = 'beforeSleep';
 
 export const LESS_THAN_80 = '<80';
 export const BETWEEN_81_120 = '81-120';
 export const BETWEEN_161_250 = '161-250';
 export const BIGGER_THAN_250 = '250<';
+
+export const CARBOHYDRATES = 'carbohydrates';
+export const PROTEIN = 'protein';
+export const FRUIT = 'fruit';
+export const DAIRY = 'dairy';
 
 export const CORRECTION_FACTOR = 'correctionFactor';
 
@@ -58,6 +66,44 @@ export const store = {
       [DINNER]: '',
       [CORRECTION_FACTOR]: '',
       comment: ''
+    },
+    foodPortions: {
+      [BREAKFAST]: {
+        [CARBOHYDRATES]: '',
+        [PROTEIN]: '',
+        [FRUIT]: '',
+        [DAIRY]: ''
+      },
+      [MORNING_SNACK]: {
+        [CARBOHYDRATES]: '',
+        [PROTEIN]: '',
+        [FRUIT]: '',
+        [DAIRY]: ''
+      },
+      [LUNCH]: {
+        [CARBOHYDRATES]: '',
+        [PROTEIN]: '',
+        [FRUIT]: '',
+        [DAIRY]: ''
+      },
+      [AFTERNOON_SNACK]: {
+        [CARBOHYDRATES]: '',
+        [PROTEIN]: '',
+        [FRUIT]: '',
+        [DAIRY]: ''
+      },
+      [DINNER]: {
+        [CARBOHYDRATES]: '',
+        [PROTEIN]: '',
+        [FRUIT]: '',
+        [DAIRY]: ''
+      },
+      [BEFORE_SLEEP]: {
+        [CARBOHYDRATES]: '',
+        [PROTEIN]: '',
+        [FRUIT]: '',
+        [DAIRY]: ''
+      }
     }
   }
 };
@@ -90,6 +136,7 @@ addReducer('campistDataBasalDosageRemove', (stage, idx) => {
 addReducer('campistDataBasalDosageEdit', (stage, idx, key, value) => {
   const newState = { ...stage };
   newState[CAMPIST_DATA].basalDosage[idx][key] = value;
+  console.log(newState[CAMPIST_DATA].basalDosage);
   return newState;
 });
 
@@ -117,6 +164,11 @@ addReducer(
 addReducer('campistDataSetInsulinSchemaRatioValue', (stage, type, value) => {
   const newState = { ...stage };
   newState[CAMPIST_DATA].insulinSchemaRatio[type] = value;
-  console.log(newState[CAMPIST_DATA].insulinSchemaRatio);
+  return newState;
+});
+
+addReducer('campistDataSetFoodPortionValue', (stage, time, type, value) => {
+  const newState = { ...stage };
+  newState[CAMPIST_DATA].foodPortions[time][type] = value;
   return newState;
 });
