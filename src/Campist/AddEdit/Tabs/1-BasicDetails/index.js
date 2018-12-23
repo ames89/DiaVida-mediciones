@@ -1,44 +1,20 @@
 import React from 'reactn';
-import PropTypes from 'prop-types';
 import { Paper, TextField, MenuItem, Button } from '@material-ui/core';
 
-import styles from './style.module.scss';
 import { COLORS } from '../../../../Constants/colors';
+import { CAMPIST_DATA } from '../../../../Store/reducers/storeNames';
+import Generic from '../generic';
 
-class BasicDetails extends React.Component {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired
-  };
+import styles from './style.module.scss';
 
-  state = {
-    name: '',
-    lastname: '',
-    yearsOld: '',
-    weight: '',
-    team: '',
-    drugs: '',
-    allergies: ''
-  };
-
-  saveValue = item => e => {
-    this.setState({
-      [item]: e.target.value,
-      errorMsg: ''
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.global.addCampistData(this.state);
-    this.props.handleSubmit();
-  };
-
+class BasicDetails extends Generic {
   render() {
     const textInputClass = styles['text-input'];
     const halfSizeClass = [styles['text-input'], styles['half-size']].join(' ');
     const thirdSizeClass = [styles['text-input'], styles['third-size']].join(
       ' '
     );
+    const campistData = this.global[CAMPIST_DATA];
 
     return (
       <Paper className={styles['component']} elevation={0} square>
@@ -50,7 +26,7 @@ class BasicDetails extends React.Component {
             onChange={this.saveValue('name')}
             required
             type="text"
-            value={this.state.name}
+            value={campistData.name}
           />
           <TextField
             className={halfSizeClass}
@@ -59,7 +35,7 @@ class BasicDetails extends React.Component {
             onChange={this.saveValue('lastname')}
             required
             type="text"
-            value={this.state.lastname}
+            value={campistData.lastname}
           />
 
           <TextField
@@ -74,7 +50,7 @@ class BasicDetails extends React.Component {
               max: 100,
               step: 1
             }}
-            value={this.state.yearsOld}
+            value={campistData.yearsOld}
           />
           <TextField
             className={thirdSizeClass}
@@ -88,7 +64,7 @@ class BasicDetails extends React.Component {
             }}
             required
             type="number"
-            value={this.state.weight}
+            value={campistData.weight}
           />
           <TextField
             className={thirdSizeClass}
@@ -97,7 +73,7 @@ class BasicDetails extends React.Component {
             onChange={this.saveValue('team')}
             required
             select
-            value={this.state.team}
+            value={campistData.team}
           >
             {Object.keys(COLORS).map(color => (
               <MenuItem key={color} value={color}>
@@ -114,7 +90,7 @@ class BasicDetails extends React.Component {
             multiline
             onChange={this.saveValue('drugs')}
             rows="3"
-            value={this.state.drugs}
+            value={campistData.drugs}
           />
 
           <TextField
@@ -125,7 +101,7 @@ class BasicDetails extends React.Component {
             multiline
             onChange={this.saveValue('allergies')}
             rows="3"
-            value={this.state.allergies}
+            value={campistData.allergies}
           />
 
           <Button

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Paper, AppBar, Tabs, Tab } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 
-import BasicDetails from './Tabs/BasicDetails';
+import BasicDetails from './Tabs/1-BasicDetails';
+import BasalDosage from './Tabs/2-BasalDosage';
 
 import styles from './style.module.scss';
 
@@ -65,10 +66,12 @@ class AddEdit extends Component {
             axis="x"
             className={styles['swipe-container']}
             index={tabPosition}
-            onChangeIndex={this.handleChange}
           >
             <BasicDetails handleSubmit={this.goToNext} />
-            <Paper>Item Two</Paper>
+            <BasalDosage
+              handleSubmit={this.goToNext}
+              handleBack={this.goToPrev}
+            />
             <Paper>Item Three</Paper>
           </SwipeableViews>
         </Paper>
