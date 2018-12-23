@@ -14,7 +14,7 @@ import {
 
 class Scales extends React.Component {
   setInsulinSchemaValue = (time, type) => e => {
-    if (type) {
+    if (typeof type !== 'undefined') {
       this.global.campistDataSetInsulinSchemaScaleValue(
         time,
         type,

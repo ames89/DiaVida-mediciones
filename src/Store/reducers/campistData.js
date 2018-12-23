@@ -30,7 +30,7 @@ export const store = {
     drugs: '',
     allergies: '',
     basalDosage: [{ ...basalDosage }],
-    insulinSchemaType: '', // one of 'scale'|'ratio'
+    insulinSchemaType: INSULIN_SCHEMA_SCALE, // one of 'scale'|'ratio'
     insulinSchemaScale: {
       [BREAKFAST]: {
         [LESS_THAN_80]: '',
@@ -103,7 +103,7 @@ addReducer(
   'campistDataSetInsulinSchemaScaleValue',
   (stage, time, type, value) => {
     const newState = { ...stage };
-    if (value) {
+    if (typeof value !== 'undefined') {
       newState[CAMPIST_DATA].insulinSchemaScale[time][type] = value;
     } else {
       value = type;

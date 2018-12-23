@@ -75,7 +75,10 @@ class AddEdit extends Component {
               handleSubmit={this.goToNext}
               handleBack={this.goToPrev}
             />
-            <InsulinSchema handleSubmit={() => {}} />
+            <InsulinSchema
+              handleBack={this.goToPrev}
+              handleSubmit={this.goToNext}
+            />
             <Paper>asdasdasd</Paper>
           </SwipeableViews>
         </Paper>

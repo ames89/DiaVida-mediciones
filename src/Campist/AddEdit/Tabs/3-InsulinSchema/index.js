@@ -6,7 +6,8 @@ import {
   FormLabel,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+  Button
 } from '@material-ui/core';
 
 import { CAMPIST_DATA } from '../../../../Store/reducers/storeNames';
@@ -56,6 +57,30 @@ class InsulinSchema extends Generic {
           </Grid>
           {insulinSchemaType === INSULIN_SCHEMA_SCALE && <Scales />}
           {insulinSchemaType === INSULIN_SCHEMA_RATIO && <Ratios />}
+          <Grid item xs={12}>
+            <Grid container justify="flex-end" spacing={8}>
+              <Grid item>
+                <Button
+                  color="primary"
+                  size="small"
+                  variant="contained"
+                  onClick={this.props.handleBack}
+                >
+                  Anterior
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  color="primary"
+                  size="small"
+                  variant="contained"
+                  type="submit"
+                >
+                  Siguiente
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
         </form>
       </Paper>
     );
