@@ -52,7 +52,7 @@ class AddEdit extends Component {
               indicatorColor="primary"
               onChange={this.handleChange}
               scrollable
-              scrollButtons="auto"
+              scrollButtons="on"
               textColor="primary"
               value={tabPosition}
             >

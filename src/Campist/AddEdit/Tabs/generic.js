@@ -12,7 +12,7 @@ class Generic extends React.Component {
   }
 
   saveValue = item => e => {
-    this.global.setCampistData(item, e.target.value);
+    this.global.campistDataSetValue(item, e.target.value);
   };
 
   handleSubmit = e => {
