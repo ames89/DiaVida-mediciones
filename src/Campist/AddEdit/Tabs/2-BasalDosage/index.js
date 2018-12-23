@@ -14,6 +14,7 @@ import { Fragment } from 'react';
 import { Add as AddIcon, Delete as DeleteIcon } from '@material-ui/icons';
 
 import styles from './style.module.scss';
+import InsulinTextInput from '../../../../common/InsulinTextInput';
 
 class BasicDetails extends Generic {
   addBasal = () => {
@@ -39,18 +40,10 @@ class BasicDetails extends Generic {
               return (
                 <Fragment key={JSON.stringify(idx)}>
                   <Grid item xs={6}>
-                    <TextField
-                      fullWidth
+                    <InsulinTextInput
                       label="Dosis de insulina"
-                      margin="dense"
                       onChange={this.editBasal(idx, 'dosage')}
-                      required
-                      type="number"
                       value={dosage.dosage}
-                      inputProps={{
-                        min: 0,
-                        step: 1
-                      }}
                     />
                   </Grid>
                   <Grid item xs={4}>

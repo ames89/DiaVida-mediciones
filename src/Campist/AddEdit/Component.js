@@ -7,6 +7,7 @@ import BasicDetails from './Tabs/1-BasicDetails';
 import BasalDosage from './Tabs/2-BasalDosage';
 
 import styles from './style.module.scss';
+import InsulinSchema from './Tabs/3-InsulinSchema';
 
 class AddEdit extends Component {
   static propTypes = {
@@ -72,7 +73,7 @@ class AddEdit extends Component {
               handleSubmit={this.goToNext}
               handleBack={this.goToPrev}
             />
-            <Paper>Item Three</Paper>
+            <InsulinSchema handleSubmit={() => {}} />
           </SwipeableViews>
         </Paper>
       </div>

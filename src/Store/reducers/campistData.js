@@ -1,6 +1,9 @@
 import { addReducer } from 'reactn';
 import { CAMPIST_DATA } from './storeNames';
 
+export const INSULIN_SCHEMA_SCALE = 'scale';
+export const INSULIN_SCHEMA_RATIO = 'ratio';
+
 export const basalDosage = {
   dosage: '',
   time: ''
@@ -15,7 +18,10 @@ export const store = {
     team: '',
     drugs: '',
     allergies: '',
-    basalDosage: [{ ...basalDosage }]
+    basalDosage: [{ ...basalDosage }],
+    insulinSchemaType: '', // one of 'scale'|'ratio'
+    insulinSchemaScale: {},
+    insulinSchemaRatio: {}
   }
 };
 
@@ -47,5 +53,11 @@ addReducer('campistDataBasalDosageRemove', (stage, idx) => {
 addReducer('campistDataBasalDosageEdit', (stage, idx, key, value) => {
   const newState = { ...stage };
   newState[CAMPIST_DATA].basalDosage[idx][key] = value;
+  return newState;
+});
+
+addReducer('campistDataChangeInsulinSchemaType', (stage, type) => {
+  const newState = { ...stage };
+  newState[CAMPIST_DATA].insulinSchemaType = type;
   return newState;
 });
