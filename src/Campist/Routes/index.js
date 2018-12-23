@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import List from '../List';
 import AddEdit from '../AddEdit';
 
-const Routes = props => {
+const Routes = () => {
   return (
     <Switch>
       <Route path="/app/" exact component={List} />

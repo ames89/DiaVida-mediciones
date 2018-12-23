@@ -1,4 +1,5 @@
 import React, { Component } from 'reactn';
+import PropTypes from 'prop-types';
 import {
   Button,
   CircularProgress,
@@ -12,17 +13,17 @@ import fb, { firebase } from '../Store/firebase';
 import styles from './style.module.scss';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
 
-    this.state = {
-      email: '',
-      pass: '',
-      isFormExpanded: false,
-      isLoading: false,
-      errorMsg: ''
-    };
-  }
+  state = {
+    email: '',
+    pass: '',
+    isFormExpanded: false,
+    isLoading: false,
+    errorMsg: ''
+  };
 
   toggleFormExpand = () => {
     this.setState({ isFormExpanded: !this.state.isFormExpanded });

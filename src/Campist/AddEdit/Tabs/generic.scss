@@ -1,7 +1,27 @@
 .component {
-  margin: 20px;
+  padding: 20px;
 }
 
 .text-input {
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.half-size {
+  width: 50%;
+}
+
+.third-size {
+  width: 33%;
+}
+
+.button-submit {
   margin-top: 20px;
+  margin-left: 20px;
+  min-width: 100px;
+  float: right;
+}
+
+.last {
+  clear: both;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'reactn';
+import PropTypes from 'prop-types';
 import { Paper, AppBar, Tabs, Tab } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 
@@ -7,6 +8,10 @@ import BasicDetails from './Tabs/BasicDetails';
 import styles from './style.module.scss';
 
 class AddEdit extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired
+  };
+
   state = {
     tabPosition: 0
   };
@@ -54,7 +59,7 @@ class AddEdit extends Component {
             index={tabPosition}
             onChangeIndex={this.handleChange}
           >
-            <BasicDetails />
+            <BasicDetails handle />
             <Paper>Item Two</Paper>
             <Paper>Item Three</Paper>
           </SwipeableViews>

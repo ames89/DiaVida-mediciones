@@ -1,4 +1,5 @@
 import React, { Component } from 'reactn';
+import PropTypes from 'prop-types';
 import { Paper, TextField, InputAdornment, Fab } from '@material-ui/core';
 import { Search, Add as AddIcon } from '@material-ui/icons';
 
@@ -9,6 +10,10 @@ import Table from './TableList';
 import styles from './style.module.scss';
 
 class List extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
   state = {
     campists: [],
     campistsFiltered: [],

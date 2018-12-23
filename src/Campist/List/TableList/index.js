@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Table,
   TableBody,
@@ -10,6 +11,9 @@ import {
 import styles from './style.module.scss';
 
 class DataTable extends Component {
+  static propTypes = {
+    rows: PropTypes.array.isRequired
+  };
   static defaultProps = {
     rows: []
   };

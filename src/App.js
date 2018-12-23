@@ -9,11 +9,7 @@ import styles from './App.module.scss';
 
 const loadUserData = LocalComponent => {
   return class extends Component {
-    constructor(props) {
-      super(props);
-
-      this.state = { loading: true };
-    }
+    state = { loading: true };
 
     componentDidMount() {
       fb.auth().onAuthStateChanged(user => {
