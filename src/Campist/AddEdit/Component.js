@@ -89,7 +89,7 @@ class AddEdit extends Component {
               <Tab label="Detalles Básicos" />
               <Tab label="Dosis basal" />
               <Tab label="Esquema de Insulina" />
-              <Tab label="Porción de Alimentos" />
+              <Tab label="Porciones de Alimentos" />
             </Tabs>
           </AppBar>
           <SwipeableViews
