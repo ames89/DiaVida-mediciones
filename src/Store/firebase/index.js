@@ -5,12 +5,12 @@ import 'firebase/firestore';
 
 // CONFIG FIREBASE
 const config = {
-  apiKey: 'AIzaSyCNve2Q7OP06iAS6k_Fuj5KoNYYwW7sX4E',
-  authDomain: 'diavida-dev-costa-rica.firebaseapp.com',
-  databaseURL: 'https://diavida-dev-costa-rica.firebaseio.com',
-  projectId: 'diavida-dev-costa-rica',
-  storageBucket: 'diavida-dev-costa-rica.appspot.com',
-  messagingSenderId: '730070265788'
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTHDOMAIN,
+  databaseURL: process.env.DATABASEURL,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSENDERID
 };
 
 // INITIALIZE FIREBASEAPP
