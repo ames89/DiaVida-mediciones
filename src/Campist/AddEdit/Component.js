@@ -1,6 +1,6 @@
 import React, { Component } from 'reactn';
 import PropTypes from 'prop-types';
-import { Paper, AppBar, Tabs, Tab } from '@material-ui/core';
+import { Paper, AppBar, Tabs, Tab, CircularProgress } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 
 import SuccessSnackbar from '../../common/SuccessSnackbar';
@@ -10,7 +10,7 @@ import BasalDosage from './Tabs/2-BasalDosage';
 import InsulinSchema from './Tabs/3-InsulinSchema';
 import FoodPortions from './Tabs/4-FoodPortions';
 
-import { addCampist } from '../../Store/firebase/Campists';
+import { addCampist, getCampistById } from '../../Store/firebase/Campists';
 import { CAMPIST_DATA } from '../../Store/reducers/storeNames';
 
 import styles from './style.module.scss';
@@ -23,20 +23,35 @@ class AddEdit extends Component {
   state = {
     tabPosition: 0,
     openSnack: false,
-    isDisabledSubmit: false
+    isDisabledSubmit: false,
+    loading: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
+    this.global.initCampistData();
     if (
       this.props &&
       this.props.match &&
       this.props.match.params &&
       this.props.match.params.id
     ) {
+      this.setState({ loading: true });
       this.global.setHeaderTitle('Editar campista');
+      this.setGlobal(
+        getCampistById(this.props.match.params.id)
+          .then(data => {
+            this.document = data.doc;
+            this.setState({ loading: false });
+            return {
+              [CAMPIST_DATA]: data.docSnapshot.data()
+            };
+          })
+          .catch(() => {
+            this.props.history.push('/app');
+          })
+      );
     } else {
       this.global.setHeaderTitle('Agregar campista');
-      this.global.initCampistData();
     }
   }
 
@@ -60,16 +75,21 @@ class AddEdit extends Component {
 
   submitData = () => {
     this.setState({ isDisabledSubmit: true });
-    addCampist(this.global[CAMPIST_DATA])
-      .finally(() => {
-        this.setState({ isDisabledSubmit: false });
-      })
-      .then(() => {
+    let promise;
+    if (this.document) {
+      console.log(this.document);
+      promise = this.document.update(this.global[CAMPIST_DATA]);
+    } else {
+      promise = addCampist(this.global[CAMPIST_DATA]).then(() => {
         this.global.initCampistData();
         this.setState({
-          tabPosition: 0,
-          openSnack: true
+          tabPosition: 0
         });
+      });
+    }
+    promise
+      .finally(() => {
+        this.setState({ isDisabledSubmit: false, openSnack: true });
       })
       .catch(e => {
         console.error('error', e);
@@ -117,11 +137,20 @@ class AddEdit extends Component {
               isDisabledSubmit={this.state.isDisabledSubmit}
             />
           </SwipeableViews>
+          {this.state.loading && (
+            <div className={styles.loader}>
+              <CircularProgress disableShrink />
+            </div>
+          )}
         </Paper>
         <SuccessSnackbar
           onClose={this.onCloseSnackbar}
           isOpen={this.state.openSnack}
-          message="El campista se ha almacenado correctamente"
+          message={
+            this.props.match.params.id
+              ? 'El campista se ha actualizado correctamente'
+              : 'El campista se ha almacenado correctamente'
+          }
         />
       </div>
     );

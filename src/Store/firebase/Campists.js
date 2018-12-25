@@ -13,6 +13,18 @@ export const getAllCampists = () => {
   });
 };
 
+export const getCampistById = id => {
+  const query = campistsCollection;
+  const doc = query.doc(id);
+
+  return doc.get().then(docSnapshot => {
+    if (docSnapshot.exists) {
+      return { doc, docSnapshot };
+    }
+    return undefined;
+  });
+};
+
 export const addCampist = newCampist => {
   return campistsCollection.add({ ...newCampist });
 };

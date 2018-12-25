@@ -7,3 +7,17 @@
 .swipe-container {
   margin-top: 10px;
 }
+
+.loader {
+  background-color: white;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex: flex-grow;
+  align-items: center;
+  justify-content: center;
+}

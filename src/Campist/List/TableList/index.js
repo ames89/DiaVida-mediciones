@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow
 } from '@material-ui/core';
+import { withRouter } from 'react-router';
 
 import styles from './style.module.scss';
 
@@ -16,6 +17,10 @@ class DataTable extends Component {
   };
   static defaultProps = {
     rows: []
+  };
+
+  onClickRow = id => () => {
+    this.props.history.push(`/app/campist/${id}`);
   };
 
   render() {
@@ -33,7 +38,11 @@ class DataTable extends Component {
         <TableBody>
           {rows.map(row => {
             return (
-              <TableRow key={row.id}>
+              <TableRow
+                className={styles['row-click']}
+                key={row.id}
+                onClick={this.onClickRow(row.id)}
+              >
                 <TableCell className={styles[`table-cell-color-${row.team}`]} />
                 <TableCell>
                   {row.names} {row.lastNames}
@@ -48,4 +57,4 @@ class DataTable extends Component {
   }
 }
 
-export default DataTable;
+export default withRouter(DataTable);
