@@ -9,6 +9,8 @@ import { indigo, lightBlue } from '@material-ui/core/colors';
 
 import './Store/reducers';
 
+require('dotenv').config();
+
 const theme = createMuiTheme({
   palette: {
     primary: indigo,

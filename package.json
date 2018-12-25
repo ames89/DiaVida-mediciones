@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "3.7.1",
     "@material-ui/icons": "3.0.1",
+    "dotenv": "^6.2.0",
     "firebase": "5.7.1",
     "node-sass": "4.11.0",
     "react": "16.7.0",
