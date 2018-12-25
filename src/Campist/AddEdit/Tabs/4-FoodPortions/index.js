@@ -192,6 +192,7 @@ class FoodPortions extends Generic {
                     size="small"
                     variant="contained"
                     type="submit"
+                    disabled={this.props.isDisabledSubmit}
                   >
                     Almacenar
                   </Button>

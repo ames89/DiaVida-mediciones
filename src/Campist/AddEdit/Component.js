@@ -22,7 +22,8 @@ class AddEdit extends Component {
 
   state = {
     tabPosition: 0,
-    openSnack: false
+    openSnack: false,
+    isDisabledSubmit: false
   };
 
   componentWillMount() {
@@ -58,7 +59,11 @@ class AddEdit extends Component {
   };
 
   submitData = () => {
+    this.setState({ isDisabledSubmit: true });
     addCampist(this.global[CAMPIST_DATA])
+      .finally(() => {
+        this.setState({ isDisabledSubmit: false });
+      })
       .then(() => {
         this.global.initCampistData();
         this.setState({
@@ -109,6 +114,7 @@ class AddEdit extends Component {
             <FoodPortions
               handleBack={this.goToPrev}
               handleSubmit={this.submitData}
+              isDisabledSubmit={this.state.isDisabledSubmit}
             />
           </SwipeableViews>
         </Paper>
