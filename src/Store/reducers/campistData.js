@@ -30,9 +30,9 @@ export const basalDosage = {
 
 export const store = {
   [CAMPIST_DATA]: {
-    name: '',
-    lastname: '',
-    yearsOld: '',
+    names: '',
+    lastNames: '',
+    age: '',
     weight: '',
     team: '',
     drugs: '',
@@ -136,7 +136,6 @@ addReducer('campistDataBasalDosageRemove', (stage, idx) => {
 addReducer('campistDataBasalDosageEdit', (stage, idx, key, value) => {
   const newState = { ...stage };
   newState[CAMPIST_DATA].basalDosage[idx][key] = value;
-  console.log(newState[CAMPIST_DATA].basalDosage);
   return newState;
 });
 

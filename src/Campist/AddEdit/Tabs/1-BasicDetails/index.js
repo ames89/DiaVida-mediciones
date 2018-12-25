@@ -20,10 +20,10 @@ class BasicDetails extends Generic {
                 fullWidth
                 label="Nombres"
                 margin="dense"
-                onChange={this.saveValue('name')}
+                onChange={this.saveValue('names')}
                 required
                 type="text"
-                value={campistData.name}
+                value={campistData.names}
               />
             </Grid>
             <Grid item xs={6}>
@@ -31,10 +31,10 @@ class BasicDetails extends Generic {
                 fullWidth
                 label="Apellidos"
                 margin="dense"
-                onChange={this.saveValue('lastname')}
+                onChange={this.saveValue('lastNames')}
                 required
                 type="text"
-                value={campistData.lastname}
+                value={campistData.lastNames}
               />
             </Grid>
             <Grid item xs={4}>
@@ -42,14 +42,14 @@ class BasicDetails extends Generic {
                 fullWidth
                 label="Edad"
                 margin="dense"
-                onChange={this.saveValue('yearsOld')}
+                onChange={this.saveValue('age')}
                 required
                 type="number"
                 inputProps={{
                   min: 0,
                   step: 1
                 }}
-                value={campistData.yearsOld}
+                value={campistData.age}
               />
             </Grid>
             <Grid item xs={4}>

@@ -5,12 +5,12 @@ import 'firebase/firestore';
 
 // CONFIG FIREBASE
 const config = {
-  apiKey: 'AIzaSyCWnkNyxOjnLxEL2AWV6zx6IUtQzJvwT04',
-  authDomain: 'diavida-costa-rica-2018.firebaseapp.com',
-  databaseURL: 'https://diavida-costa-rica-2018.firebaseio.com',
-  projectId: 'diavida-costa-rica-2018',
-  storageBucket: 'diavida-costa-rica-2018.appspot.com',
-  messagingSenderId: '559741428424'
+  apiKey: 'AIzaSyCNve2Q7OP06iAS6k_Fuj5KoNYYwW7sX4E',
+  authDomain: 'diavida-dev-costa-rica.firebaseapp.com',
+  databaseURL: 'https://diavida-dev-costa-rica.firebaseio.com',
+  projectId: 'diavida-dev-costa-rica',
+  storageBucket: 'diavida-dev-costa-rica.appspot.com',
+  messagingSenderId: '730070265788'
 };
 
 // INITIALIZE FIREBASEAPP

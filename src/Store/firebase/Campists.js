@@ -1,12 +1,9 @@
 import firebase from './index';
 
-export const getAllCampistsLive = render => {
-  const query = firebase.firestore().collection('campists');
-  getDocumentsInQuery(query, render);
-};
+export const campistsCollection = firebase.firestore().collection('campists');
 
-export const getAllCampists = listing => {
-  const query = firebase.firestore().collection('campists');
+export const getAllCampists = () => {
+  const query = campistsCollection;
 
   return query.get().then(querySnapshot => {
     if (!querySnapshot || (querySnapshot && querySnapshot.empty)) {
@@ -16,16 +13,6 @@ export const getAllCampists = listing => {
   });
 };
 
-const getDocumentsInQuery = (query, render) => {
-  query.onSnapshot(snapshot => {
-    if (!snapshot.size) {
-      return render();
-    }
-
-    snapshot.docChanges().forEach(change => {
-      if (change.type === 'added') {
-        render(change.doc);
-      }
-    });
-  });
+export const addCampist = newCampist => {
+  return campistsCollection.add({ ...newCampist });
 };
