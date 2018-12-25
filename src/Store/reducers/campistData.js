@@ -23,95 +23,97 @@ export const DAIRY = 'dairy';
 
 export const CORRECTION_FACTOR = 'correctionFactor';
 
-export const basalDosage = {
+export const getNewBasalDosage = () => ({
   dosage: '',
   time: ''
-};
+});
 
-export const store = {
-  [CAMPIST_DATA]: {
-    names: '',
-    lastNames: '',
-    age: '',
-    weight: '',
-    team: '',
-    drugs: '',
-    allergies: '',
-    basalDosage: [{ ...basalDosage }],
-    insulinSchemaType: INSULIN_SCHEMA_SCALE, // one of 'scale'|'ratio'
-    insulinSchemaScale: {
-      [BREAKFAST]: {
-        [LESS_THAN_80]: '',
-        [BETWEEN_81_120]: '',
-        [BETWEEN_161_250]: '',
-        [BIGGER_THAN_250]: ''
+export const getNewStore = () => {
+  return {
+    [CAMPIST_DATA]: {
+      names: '',
+      lastNames: '',
+      age: '',
+      weight: '',
+      team: '',
+      drugs: '',
+      allergies: '',
+      basalDosage: [getNewBasalDosage()],
+      insulinSchemaType: INSULIN_SCHEMA_SCALE, // one of 'scale'|'ratio'
+      insulinSchemaScale: {
+        [BREAKFAST]: {
+          [LESS_THAN_80]: '',
+          [BETWEEN_81_120]: '',
+          [BETWEEN_161_250]: '',
+          [BIGGER_THAN_250]: ''
+        },
+        [LUNCH]: {
+          [LESS_THAN_80]: '',
+          [BETWEEN_81_120]: '',
+          [BETWEEN_161_250]: '',
+          [BIGGER_THAN_250]: ''
+        },
+        [DINNER]: {
+          [LESS_THAN_80]: '',
+          [BETWEEN_81_120]: '',
+          [BETWEEN_161_250]: '',
+          [BIGGER_THAN_250]: ''
+        },
+        comment: ''
       },
-      [LUNCH]: {
-        [LESS_THAN_80]: '',
-        [BETWEEN_81_120]: '',
-        [BETWEEN_161_250]: '',
-        [BIGGER_THAN_250]: ''
+      insulinSchemaRatio: {
+        [BREAKFAST]: '',
+        [LUNCH]: '',
+        [DINNER]: '',
+        [CORRECTION_FACTOR]: '',
+        comment: ''
       },
-      [DINNER]: {
-        [LESS_THAN_80]: '',
-        [BETWEEN_81_120]: '',
-        [BETWEEN_161_250]: '',
-        [BIGGER_THAN_250]: ''
-      },
-      comment: ''
-    },
-    insulinSchemaRatio: {
-      [BREAKFAST]: '',
-      [LUNCH]: '',
-      [DINNER]: '',
-      [CORRECTION_FACTOR]: '',
-      comment: ''
-    },
-    foodPortions: {
-      [BREAKFAST]: {
-        [CARBOHYDRATES]: '',
-        [PROTEIN]: '',
-        [FRUIT]: '',
-        [DAIRY]: ''
-      },
-      [MORNING_SNACK]: {
-        [CARBOHYDRATES]: '',
-        [PROTEIN]: '',
-        [FRUIT]: '',
-        [DAIRY]: ''
-      },
-      [LUNCH]: {
-        [CARBOHYDRATES]: '',
-        [PROTEIN]: '',
-        [FRUIT]: '',
-        [DAIRY]: ''
-      },
-      [AFTERNOON_SNACK]: {
-        [CARBOHYDRATES]: '',
-        [PROTEIN]: '',
-        [FRUIT]: '',
-        [DAIRY]: ''
-      },
-      [DINNER]: {
-        [CARBOHYDRATES]: '',
-        [PROTEIN]: '',
-        [FRUIT]: '',
-        [DAIRY]: ''
-      },
-      [BEFORE_SLEEP]: {
-        [CARBOHYDRATES]: '',
-        [PROTEIN]: '',
-        [FRUIT]: '',
-        [DAIRY]: ''
+      foodPortions: {
+        [BREAKFAST]: {
+          [CARBOHYDRATES]: '',
+          [PROTEIN]: '',
+          [FRUIT]: '',
+          [DAIRY]: ''
+        },
+        [MORNING_SNACK]: {
+          [CARBOHYDRATES]: '',
+          [PROTEIN]: '',
+          [FRUIT]: '',
+          [DAIRY]: ''
+        },
+        [LUNCH]: {
+          [CARBOHYDRATES]: '',
+          [PROTEIN]: '',
+          [FRUIT]: '',
+          [DAIRY]: ''
+        },
+        [AFTERNOON_SNACK]: {
+          [CARBOHYDRATES]: '',
+          [PROTEIN]: '',
+          [FRUIT]: '',
+          [DAIRY]: ''
+        },
+        [DINNER]: {
+          [CARBOHYDRATES]: '',
+          [PROTEIN]: '',
+          [FRUIT]: '',
+          [DAIRY]: ''
+        },
+        [BEFORE_SLEEP]: {
+          [CARBOHYDRATES]: '',
+          [PROTEIN]: '',
+          [FRUIT]: '',
+          [DAIRY]: ''
+        }
       }
     }
-  }
+  };
 };
 
 addReducer('initCampistData', state => {
   return {
     ...state,
-    [CAMPIST_DATA]: { ...store[CAMPIST_DATA] }
+    ...getNewStore()
   };
 });
 
@@ -123,7 +125,7 @@ addReducer('campistDataSetValue', (state, key, value) => {
 
 addReducer('campistDataBasalDosageAdd', stage => {
   const newState = { ...stage };
-  newState[CAMPIST_DATA].basalDosage.push({ ...basalDosage });
+  newState[CAMPIST_DATA].basalDosage.push(getNewBasalDosage());
   return newState;
 });
 

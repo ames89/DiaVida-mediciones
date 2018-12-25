@@ -1,10 +1,9 @@
 import { setGlobal } from 'reactn';
 import { store as headerTitleStore } from './headerTitle';
-import { store as campistDataStore } from './campistData';
+import { getNewStore as campistDataStore } from './campistData';
 
 const initData = {
   ...headerTitleStore,
-  ...campistDataStore
+  ...campistDataStore()
 };
-
 setGlobal(initData);
