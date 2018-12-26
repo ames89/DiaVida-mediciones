@@ -9,7 +9,7 @@ export default class MainAppView extends Component {
   render() {
     return (
       <div className={styles.app}>
-        <Header title={this.global.headerTitle} />
+        <Header />
         <Routes />
       </div>
     );

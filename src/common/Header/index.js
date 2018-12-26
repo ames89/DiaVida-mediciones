@@ -1,26 +1,30 @@
 import React, { Component } from 'reactn';
-import PropTypes from 'prop-types';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { withRouter } from 'react-router';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { ArrowBack } from '@material-ui/icons';
+import { HEADER_TITLE, HEADER_GOBACK } from '../../Store/reducers/storeNames';
 
-// import styles from './style.module.scss'
-
-export default class Header extends Component {
-  static propTypes = {
-    title: PropTypes.string
-  };
-  static defaultProps = {
-    title: ''
+class Header extends Component {
+  handleGoBack = () => {
+    this.props.history.goBack();
   };
 
   render() {
     return (
       <AppBar position="fixed">
         <Toolbar>
+          {this.global[HEADER_GOBACK] && (
+            <IconButton onClick={this.handleGoBack} color="inherit">
+              <ArrowBack fontSize="large" />
+            </IconButton>
+          )}
           <Typography variant="h6" color="inherit">
-            {this.props.title}
+            {this.global[HEADER_TITLE]}
           </Typography>
         </Toolbar>
       </AppBar>
     );
   }
 }
+
+export default withRouter(Header);

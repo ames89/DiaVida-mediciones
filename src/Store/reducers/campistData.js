@@ -12,7 +12,7 @@ export const DINNER = 'dinner';
 export const BEFORE_SLEEP = 'beforeSleep';
 
 export const LESS_THAN_80 = '<80';
-export const BETWEEN_81_120 = '81-120';
+export const BETWEEN_81_160 = '81-160';
 export const BETWEEN_161_250 = '161-250';
 export const BIGGER_THAN_250 = '250<';
 
@@ -43,19 +43,19 @@ export const getNewStore = () => {
       insulinSchemaScale: {
         [BREAKFAST]: {
           [LESS_THAN_80]: '',
-          [BETWEEN_81_120]: '',
+          [BETWEEN_81_160]: '',
           [BETWEEN_161_250]: '',
           [BIGGER_THAN_250]: ''
         },
         [LUNCH]: {
           [LESS_THAN_80]: '',
-          [BETWEEN_81_120]: '',
+          [BETWEEN_81_160]: '',
           [BETWEEN_161_250]: '',
           [BIGGER_THAN_250]: ''
         },
         [DINNER]: {
           [LESS_THAN_80]: '',
-          [BETWEEN_81_120]: '',
+          [BETWEEN_81_160]: '',
           [BETWEEN_161_250]: '',
           [BIGGER_THAN_250]: ''
         },
@@ -172,4 +172,11 @@ addReducer('campistDataSetFoodPortionValue', (stage, time, type, value) => {
   const newState = { ...stage };
   newState[CAMPIST_DATA].foodPortions[time][type] = value;
   return newState;
+});
+
+addReducer('campistDataSet', (state, data) => {
+  return {
+    ...state,
+    [CAMPIST_DATA]: data
+  };
 });

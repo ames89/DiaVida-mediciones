@@ -4,7 +4,7 @@ import InsulinInput from '../insulinInput';
 import { CAMPIST_DATA } from '../../../../Store/reducers/storeNames';
 import {
   LESS_THAN_80,
-  BETWEEN_81_120,
+  BETWEEN_81_160,
   BETWEEN_161_250,
   BIGGER_THAN_250,
   BREAKFAST,
@@ -40,9 +40,9 @@ class Scales extends React.Component {
           value={insulinSchemaScale[BREAKFAST][LESS_THAN_80]}
         />
         <InsulinInput
-          label={BETWEEN_81_120}
-          onChange={this.setInsulinSchemaValue(BREAKFAST, BETWEEN_81_120)}
-          value={insulinSchemaScale[BREAKFAST][BETWEEN_81_120]}
+          label={BETWEEN_81_160}
+          onChange={this.setInsulinSchemaValue(BREAKFAST, BETWEEN_81_160)}
+          value={insulinSchemaScale[BREAKFAST][BETWEEN_81_160]}
         />
         <InsulinInput
           label={BETWEEN_161_250}
@@ -63,9 +63,9 @@ class Scales extends React.Component {
           value={insulinSchemaScale[LUNCH][LESS_THAN_80]}
         />
         <InsulinInput
-          label={BETWEEN_81_120}
-          onChange={this.setInsulinSchemaValue(LUNCH, BETWEEN_81_120)}
-          value={insulinSchemaScale[LUNCH][BETWEEN_81_120]}
+          label={BETWEEN_81_160}
+          onChange={this.setInsulinSchemaValue(LUNCH, BETWEEN_81_160)}
+          value={insulinSchemaScale[LUNCH][BETWEEN_81_160]}
         />
         <InsulinInput
           label={BETWEEN_161_250}
@@ -86,9 +86,9 @@ class Scales extends React.Component {
           value={insulinSchemaScale[DINNER][LESS_THAN_80]}
         />
         <InsulinInput
-          label={BETWEEN_81_120}
-          onChange={this.setInsulinSchemaValue(DINNER, BETWEEN_81_120)}
-          value={insulinSchemaScale[DINNER][BETWEEN_81_120]}
+          label={BETWEEN_81_160}
+          onChange={this.setInsulinSchemaValue(DINNER, BETWEEN_81_160)}
+          value={insulinSchemaScale[DINNER][BETWEEN_81_160]}
         />
         <InsulinInput
           label={BETWEEN_161_250}

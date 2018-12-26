@@ -35,21 +35,19 @@ class AddEdit extends Component {
       this.props.match.params &&
       this.props.match.params.id
     ) {
+      const id = this.props.match.params.id;
       this.setState({ loading: true });
       this.global.setHeaderTitle('Editar campista');
-      this.setGlobal(
-        getCampistById(this.props.match.params.id)
-          .then(data => {
-            this.document = data.doc;
-            this.setState({ loading: false });
-            return {
-              [CAMPIST_DATA]: data.docSnapshot.data()
-            };
-          })
-          .catch(() => {
-            this.props.history.push('/app');
-          })
-      );
+      getCampistById(id)
+        .then(data => {
+          this.document = data.doc;
+          this.global.campistDataSet(data.docSnapshot.data());
+          this.setState({ loading: false });
+        })
+        .catch(err => {
+          console.error(err);
+          this.props.history.push('/app');
+        });
     } else {
       this.global.setHeaderTitle('Agregar campista');
     }
@@ -117,11 +115,7 @@ class AddEdit extends Component {
               <Tab label="Porciones de Alimentos" />
             </Tabs>
           </AppBar>
-          <SwipeableViews
-            axis="x"
-            className={styles['swipe-container']}
-            index={tabPosition}
-          >
+          <SwipeableViews axis="x" index={tabPosition}>
             <BasicDetails handleSubmit={this.goToNext} />
             <BasalDosage
               handleSubmit={this.goToNext}

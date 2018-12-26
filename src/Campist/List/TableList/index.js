@@ -11,7 +11,7 @@ import { withRouter } from 'react-router';
 
 import styles from './style.module.scss';
 
-class DataTable extends Component {
+class TableList extends Component {
   static propTypes = {
     rows: PropTypes.array.isRequired
   };
@@ -57,4 +57,4 @@ class DataTable extends Component {
   }
 }
 
-export default withRouter(DataTable);
+export default withRouter(TableList);
