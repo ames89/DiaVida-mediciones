@@ -1,11 +1,20 @@
 import React, { Component } from 'reactn';
-import { Paper, AppBar, Tabs, Tab, CircularProgress } from '@material-ui/core';
+import {
+  Paper,
+  AppBar,
+  Tabs,
+  Tab,
+  CircularProgress,
+  Grid,
+  IconButton
+} from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 
 import { getCampistById } from '../../Store/firebase/Campists';
 
 import styles from './style.module.scss';
 import GeneralInfo from './1-GeneralInfo';
+import { Delete, Edit } from '@material-ui/icons';
 
 class Details extends Component {
   state = {
@@ -26,6 +35,9 @@ class Details extends Component {
       const id = this.props.match.params.id;
       getCampistById(id)
         .then(data => {
+          if (!data.docSnapshot.exists) {
+            throw new Error('the campist does not exists');
+          }
           const campistData = data.docSnapshot.data();
           this.setState({ loading: false });
           this.global.setHeaderTitle(
@@ -50,35 +62,63 @@ class Details extends Component {
     }
   };
 
+  handleClickEdit = () => {
+    const id = this.props.match.params.id;
+    const { history } = this.props;
+    history.push(`/app/campist/edit/${id}`);
+  };
+
+  handleClickDelete = () => {
+    // TODO
+  };
+
   render() {
     const { tabPosition } = this.state;
 
     return (
-      <div>
-        <Paper className={styles['container-app-bar']} elevation={12} square>
-          <AppBar position="static" color="default">
-            <Tabs
-              indicatorColor="primary"
-              onChange={this.handleTabChange}
-              textColor="primary"
-              value={tabPosition}
-              fullWidth
+      <Paper className={styles['container']} elevation={12} square>
+        <AppBar position="static" color="default">
+          <Tabs
+            indicatorColor="primary"
+            onChange={this.handleTabChange}
+            textColor="primary"
+            value={tabPosition}
+            fullWidth
+          >
+            <Tab label="Información general" />
+            <Tab label="Diario" />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews axis="x" index={tabPosition}>
+          <GeneralInfo />
+          <Paper>asd2</Paper>
+        </SwipeableViews>
+        <Grid
+          className={styles['buttons-options']}
+          container
+          justify="flex-start"
+          spacing={8}
+        >
+          <Grid item>
+            <IconButton
+              onClick={this.handleClickDelete}
+              className={styles['button-delete']}
             >
-              <Tab label="Información general" />
-              <Tab label="Diario" />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews axis="x" index={tabPosition}>
-            <GeneralInfo />
-            <Paper>asd2</Paper>
-          </SwipeableViews>
-          {this.state.loading && (
-            <div className={styles.loader}>
-              <CircularProgress disableShrink />
-            </div>
-          )}
-        </Paper>
-      </div>
+              <Delete />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton onClick={this.handleClickEdit} color="secondary">
+              <Edit />
+            </IconButton>
+          </Grid>
+        </Grid>
+        {this.state.loading && (
+          <div className={styles.loader}>
+            <CircularProgress disableShrink />
+          </div>
+        )}
+      </Paper>
     );
   }
 }

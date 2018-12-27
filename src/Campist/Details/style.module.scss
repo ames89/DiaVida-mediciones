@@ -1,3 +1,18 @@
+@import '../../colors.scss';
+
+.container {
+  padding-bottom: 20px;
+}
+
+.buttons-options {
+  width: 100%;
+  margin: 0;
+}
+
+.button-delete {
+  color: $red;
+}
+
 .loader {
   background-color: white;
   opacity: 0.5;
