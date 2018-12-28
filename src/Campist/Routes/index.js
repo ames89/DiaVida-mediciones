@@ -11,6 +11,9 @@ const Routes = () => {
       <Route path="/app/" exact component={List} />
       <Route path="/app/campist/new" exact component={AddEdit} />
       <Route path="/app/campist/edit/:id" component={AddEdit} />
+      <Route path="/app/campist/:id/add-food" component={AddEdit} />
+      <Route path="/app/campist/:id/add-medition" component={AddEdit} />
+      <Route path="/app/campist/:id/add-injection" component={AddEdit} />
       <Route path="/app/campist/:id" component={Details} />
       <Route>
         <Redirect to="/app" />

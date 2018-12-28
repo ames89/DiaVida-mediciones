@@ -9,13 +9,13 @@ import {
   IconButton
 } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
+import { Delete, Edit } from '@material-ui/icons';
 
 import { getCampistById } from '../../Store/firebase/Campists';
-
-import styles from './style.module.scss';
 import GeneralInfo from './1-GeneralInfo';
-import { Delete, Edit } from '@material-ui/icons';
 import { CAMPIST_DATA } from '../../Store/reducers/storeNames';
+import styles from './style.module.scss';
+import CampistLogOptions from './campistLogOptions';
 
 class Details extends Component {
   state = {
@@ -81,6 +81,7 @@ class Details extends Component {
   };
 
   render() {
+    const id = this.props.match.params.id;
     const { tabPosition } = this.state;
 
     return (
@@ -121,6 +122,38 @@ class Details extends Component {
             </IconButton>
           </Grid>
         </Grid>
+        <CampistLogOptions
+          actions={[
+            {
+              icon: <img alt="com" src={require('../../assets/food.svg')} />,
+              name: 'Comida',
+              handler: () => {
+                const { history } = this.props;
+                history.push(`/app/campist/${id}/add-food`);
+              }
+            },
+            {
+              icon: (
+                <img alt="med" src={require('../../assets/medition.svg')} />
+              ),
+              name: 'Medición de glucosa',
+              handler: () => {
+                const { history } = this.props;
+                history.push(`/app/campist/${id}/add-medition`);
+              }
+            },
+            {
+              icon: (
+                <img alt="inj" src={require('../../assets/injection.svg')} />
+              ),
+              name: 'Inyección',
+              handler: () => {
+                const { history } = this.props;
+                history.push(`/app/campist/${id}/add-injection`);
+              }
+            }
+          ]}
+        />
         {this.state.loading && (
           <div className={styles.loader}>
             <CircularProgress disableShrink />
