@@ -3,7 +3,7 @@ import firebase from './index';
 export const campistsCollection = firebase.firestore().collection('campists');
 
 export const getAllCampists = () => {
-  const query = campistsCollection;
+  const query = campistsCollection.where('deleted', '==', false);
 
   return query.get().then(querySnapshot => {
     if (!querySnapshot || (querySnapshot && querySnapshot.empty)) {

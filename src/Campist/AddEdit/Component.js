@@ -75,7 +75,6 @@ class AddEdit extends Component {
     this.setState({ isDisabledSubmit: true });
     let promise;
     if (this.document) {
-      console.log(this.document);
       promise = this.document.update(this.global[CAMPIST_DATA]);
     } else {
       promise = addCampist(this.global[CAMPIST_DATA]).then(() => {

@@ -31,6 +31,7 @@ export const getNewBasalDosage = () => ({
 export const getNewStore = () => {
   return {
     [CAMPIST_DATA]: {
+      deleted: false,
       names: '',
       lastNames: '',
       age: '',

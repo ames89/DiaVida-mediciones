@@ -15,6 +15,7 @@ import { getCampistById } from '../../Store/firebase/Campists';
 import styles from './style.module.scss';
 import GeneralInfo from './1-GeneralInfo';
 import { Delete, Edit } from '@material-ui/icons';
+import { CAMPIST_DATA } from '../../Store/reducers/storeNames';
 
 class Details extends Component {
   state = {
@@ -39,6 +40,7 @@ class Details extends Component {
             throw new Error('the campist does not exists');
           }
           const campistData = data.docSnapshot.data();
+          this.document = data.doc;
           this.setState({ loading: false });
           this.global.setHeaderTitle(
             `${campistData.lastNames}, ${campistData.names}`
@@ -69,7 +71,13 @@ class Details extends Component {
   };
 
   handleClickDelete = () => {
-    // TODO
+    const { history } = this.props;
+    this.global.campistDataSetValue('deleted', true);
+    this.setState({ loading: true });
+    this.document.update(this.global[CAMPIST_DATA]).then(() => {
+      this.setState({ loading: false });
+      history.push('/app');
+    });
   };
 
   render() {
