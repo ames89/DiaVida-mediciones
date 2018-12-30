@@ -33,10 +33,15 @@ class GeneralInfo extends React.Component {
   };
 
   handleClickDelete = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const resp = confirm('Está seguro de que desea borrar al campista?');
+    if (!resp) {
+      return;
+    }
     const { history } = this.props;
     this.global.campistDataSetValue('deleted', true);
     this.setState({ loading: true });
-    this.document.update(this.global[CAMPIST_DATA]).then(() => {
+    this.props.document.update(this.global[CAMPIST_DATA]).then(() => {
       this.setState({ loading: false });
       history.push('/app');
     });

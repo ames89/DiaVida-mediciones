@@ -76,7 +76,11 @@ class Details extends Component {
           </Tabs>
         </AppBar>
         <SwipeableViews axis="x" index={tabPosition}>
-          <GeneralInfo history={this.props.history} match={this.props.match} />
+          <GeneralInfo
+            document={this.document}
+            history={this.props.history}
+            match={this.props.match}
+          />
           <LogsInfo campistId={this.props.match.params.id} />
         </SwipeableViews>
         <CampistLogOptions
