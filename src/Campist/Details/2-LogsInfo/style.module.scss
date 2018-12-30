@@ -1,0 +1,13 @@
+@import '../generic.scss';
+
+.details {
+  padding: 3px 10px;
+  &:nth-child(even) {
+    background-color: #ededed;
+  }
+}
+
+.value {
+  display: flex;
+  align-items: center;
+}

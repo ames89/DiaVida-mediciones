@@ -3,7 +3,7 @@ import firebase from './index';
 export const logsCollection = firebase.firestore().collection('logs');
 
 export const getAllLogsPerCampist = campistId => {
-  const query = logsCollection.where('campistId', '==', campistId);
+  const query = logsCollection.where('campist', '==', campistId);
 
   return query.get().then(querySnapshot => {
     if (!querySnapshot || (querySnapshot && querySnapshot.empty)) {

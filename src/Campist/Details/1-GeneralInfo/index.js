@@ -9,9 +9,11 @@ import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
-  TableHead
+  TableHead,
+  Grid,
+  IconButton
 } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
+import { ExpandMore, Delete, Edit } from '@material-ui/icons';
 import Ratio from './InsulinSchema/ratio';
 import moment from 'moment';
 import styles from './style.module.scss';
@@ -24,6 +26,22 @@ import Scale from './InsulinSchema/scale';
 import FoodTable from './FoodTable';
 
 class GeneralInfo extends React.Component {
+  handleClickEdit = () => {
+    const id = this.props.match.params.id;
+    const { history } = this.props;
+    history.push(`/app/campist/edit/${id}`);
+  };
+
+  handleClickDelete = () => {
+    const { history } = this.props;
+    this.global.campistDataSetValue('deleted', true);
+    this.setState({ loading: true });
+    this.document.update(this.global[CAMPIST_DATA]).then(() => {
+      this.setState({ loading: false });
+      history.push('/app');
+    });
+  };
+
   render() {
     const campistData = this.global[CAMPIST_DATA];
 
@@ -111,6 +129,26 @@ class GeneralInfo extends React.Component {
             <FoodTable />
           </ExpansionPanelDetails>
         </ExpansionPanel>
+        <Grid
+          className={styles['buttons-options']}
+          container
+          justify="flex-start"
+          spacing={8}
+        >
+          <Grid item>
+            <IconButton
+              onClick={this.handleClickDelete}
+              className={styles['button-delete']}
+            >
+              <Delete />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton onClick={this.handleClickEdit} color="secondary">
+              <Edit />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Paper>
     );
   }

@@ -6,6 +6,12 @@ import {
 } from './storeNames';
 import moment from 'moment';
 
+export const LOG_TYPE = {
+  food: 'Comida',
+  injection: 'Dosis',
+  medition: 'Glucemia'
+};
+
 export const FOOD_TYPES = {
   GLUCOSE_TABLET: 'Tableta de Glucosa',
   JUICE: 'Jugo',

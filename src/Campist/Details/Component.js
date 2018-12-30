@@ -1,21 +1,12 @@
 import React, { Component } from 'reactn';
-import {
-  Paper,
-  AppBar,
-  Tabs,
-  Tab,
-  CircularProgress,
-  Grid,
-  IconButton
-} from '@material-ui/core';
+import { Paper, AppBar, Tabs, Tab, CircularProgress } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
-import { Delete, Edit } from '@material-ui/icons';
 
 import { getCampistById } from '../../Store/firebase/Campists';
 import GeneralInfo from './1-GeneralInfo';
-import { CAMPIST_DATA } from '../../Store/reducers/storeNames';
 import styles from './style.module.scss';
 import CampistLogOptions from './campistLogOptions';
+import LogsInfo from './2-LogsInfo';
 
 class Details extends Component {
   state = {
@@ -51,6 +42,8 @@ class Details extends Component {
           console.error(err);
           this.props.history.push('/app');
         });
+    } else {
+      this.props.history.push('/app');
     }
   }
 
@@ -62,22 +55,6 @@ class Details extends Component {
     if (process.env.NODE_ENV !== 'production') {
       this.setState({ tabPosition: idx });
     }
-  };
-
-  handleClickEdit = () => {
-    const id = this.props.match.params.id;
-    const { history } = this.props;
-    history.push(`/app/campist/edit/${id}`);
-  };
-
-  handleClickDelete = () => {
-    const { history } = this.props;
-    this.global.campistDataSetValue('deleted', true);
-    this.setState({ loading: true });
-    this.document.update(this.global[CAMPIST_DATA]).then(() => {
-      this.setState({ loading: false });
-      history.push('/app');
-    });
   };
 
   render() {
@@ -99,29 +76,9 @@ class Details extends Component {
           </Tabs>
         </AppBar>
         <SwipeableViews axis="x" index={tabPosition}>
-          <GeneralInfo />
-          <Paper>asd2</Paper>
+          <GeneralInfo history={this.props.history} match={this.props.match} />
+          <LogsInfo campistId={this.props.match.params.id} />
         </SwipeableViews>
-        <Grid
-          className={styles['buttons-options']}
-          container
-          justify="flex-start"
-          spacing={8}
-        >
-          <Grid item>
-            <IconButton
-              onClick={this.handleClickDelete}
-              className={styles['button-delete']}
-            >
-              <Delete />
-            </IconButton>
-          </Grid>
-          <Grid item>
-            <IconButton onClick={this.handleClickEdit} color="secondary">
-              <Edit />
-            </IconButton>
-          </Grid>
-        </Grid>
         <CampistLogOptions
           actions={[
             {
