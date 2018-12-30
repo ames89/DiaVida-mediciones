@@ -33,6 +33,11 @@ class LogFood extends Component {
     }
     this.initLogFood();
     this.global.setHeaderTitle('Agregar registro de comida');
+    this.global.setHeaderGoBack(true);
+  }
+
+  componentWillUnmount() {
+    this.global.setHeaderGoBack(false);
   }
 
   initLogFood = () => {
@@ -47,7 +52,7 @@ class LogFood extends Component {
   };
 
   handleCancel = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/app/campist/${this.props.match.params.id}`);
   };
 
   handleSubmit = e => {

@@ -36,6 +36,11 @@ class LogInjection extends Component {
     }
     this.initLogInjection();
     this.global.setHeaderTitle('Agregar registro de injección');
+    this.global.setHeaderGoBack(true);
+  }
+
+  componentWillUnmount() {
+    this.global.setHeaderGoBack(false);
   }
 
   initLogInjection = () => {
@@ -50,7 +55,7 @@ class LogInjection extends Component {
   };
 
   handleCancel = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/app/campist/${this.props.match.params.id}`);
   };
 
   handleSubmit = e => {
@@ -108,7 +113,7 @@ class LogInjection extends Component {
                   onChange={this.handleChangeValue('typeInjection')}
                 >
                   <FormControlLabel
-                    value="Rápida"
+                    value="FAST"
                     control={
                       <Radio
                         inputProps={{
@@ -117,10 +122,10 @@ class LogInjection extends Component {
                         }}
                       />
                     }
-                    label="Rápida"
+                    label="(Ultra/Semi) Rápida"
                   />
                   <FormControlLabel
-                    value="Basal"
+                    value="BASAL"
                     control={
                       <Radio
                         inputProps={{

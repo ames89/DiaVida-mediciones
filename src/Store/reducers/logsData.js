@@ -23,6 +23,11 @@ export const FOOD_TIME = {
   BEFORE_SLEEP: 'Antes de dormir'
 };
 
+export const INSULIN_TYPE = {
+  FAST: 'Rápida',
+  BASAL: 'Basal'
+};
+
 export const getNewLogFoodStore = campistId => {
   return {
     [LOGFOOD_DATA]: {

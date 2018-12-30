@@ -33,6 +33,11 @@ class LogMedition extends Component {
     }
     this.initLogMedition();
     this.global.setHeaderTitle('Agregar registro de Glucemia');
+    this.global.setHeaderGoBack(true);
+  }
+
+  componentWillUnmount() {
+    this.global.setHeaderGoBack(false);
   }
 
   initLogMedition = () => {
@@ -47,7 +52,7 @@ class LogMedition extends Component {
   };
 
   handleCancel = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/app/campist/${this.props.match.params.id}`);
   };
 
   handleSubmit = e => {
