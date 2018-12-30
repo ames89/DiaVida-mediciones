@@ -15,7 +15,7 @@ class Header extends Component {
         <Toolbar>
           {this.global[HEADER_GOBACK] && (
             <IconButton onClick={this.handleGoBack} color="inherit">
-              <ArrowBack fontSize="large" />
+              <ArrowBack fontSize="default" />
             </IconButton>
           )}
           <Typography variant="h6" color="inherit">
