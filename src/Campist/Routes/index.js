@@ -6,6 +6,7 @@ import AddEdit from '../AddEdit';
 import Details from '../Details';
 import LogFood from '../Logs/Food/Component';
 import LogInjection from '../Logs/Injection/Component';
+import LogMedition from '../Logs/Medition/Component';
 
 const Routes = () => {
   return (
@@ -15,7 +16,7 @@ const Routes = () => {
       <Route path="/app/campist/edit/:id" component={AddEdit} />
       <Route path="/app/campist/:id/add-food" component={LogFood} />
       <Route path="/app/campist/:id/add-injection" component={LogInjection} />
-      <Route path="/app/campist/:id/add-medition" component={AddEdit} />
+      <Route path="/app/campist/:id/add-medition" component={LogMedition} />
       <Route path="/app/campist/:id" component={Details} />
       <Route>
         <Redirect to="/app" />

@@ -14,6 +14,7 @@ export const FOOD_TYPES = {
 };
 
 export const FOOD_TIME = {
+  OTHER: 'Otro',
   BREAKFAST: 'Desayuno',
   MORNING_SNACK: 'Merienda mañana',
   LUNCH: 'Almuerzo',
@@ -53,9 +54,9 @@ export const getNewLogMeditionStore = campistId => {
     [LOGMEDITION_DATA]: {
       campist: campistId,
       type: 'medition',
-      foodTime: '',
+      foodTime: 'OTHER',
       result: '',
-      datetime: '',
+      datetime: moment().format(moment.HTML5_FMT.DATETIME_LOCAL),
       description: ''
     }
   };
@@ -75,6 +76,13 @@ addReducer('initLogInjectionData', (state, campistId) => {
   };
 });
 
+addReducer('initLogMeditionData', (state, campistId) => {
+  return {
+    ...state,
+    ...getNewLogMeditionStore(campistId)
+  };
+});
+
 addReducer('logFoodDataAddValue', (state, attName, value) => {
   const newState = { ...state };
   newState[LOGFOOD_DATA][attName] = value;
@@ -84,5 +92,11 @@ addReducer('logFoodDataAddValue', (state, attName, value) => {
 addReducer('logInjectionDataAddValue', (state, attName, value) => {
   const newState = { ...state };
   newState[LOGINJECTION_DATA][attName] = value;
+  return newState;
+});
+
+addReducer('logMeditionDataAddValue', (state, attName, value) => {
+  const newState = { ...state };
+  newState[LOGMEDITION_DATA][attName] = value;
   return newState;
 });
