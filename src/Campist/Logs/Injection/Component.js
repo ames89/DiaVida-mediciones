@@ -5,16 +5,19 @@ import {
   Button,
   Grid,
   TextField,
-  MenuItem
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio
 } from '@material-ui/core';
 import SuccessSnackbar from '../../../common/SuccessSnackbar';
 import styles from './style.module.scss';
 import { addLog } from '../../../Store/firebase/Log';
-import { LOGFOOD_DATA } from '../../../Store/reducers/storeNames';
-import { FOOD_TYPES } from '../../../Store/reducers/logsData';
+import { LOGINJECTION_DATA } from '../../../Store/reducers/storeNames';
 import InsulinInput from '../../AddEdit/Tabs/insulinInput';
 
-class LogFood extends Component {
+class LogInjection extends Component {
   state = {
     isDisabledSubmit: false,
     openSnack: false,
@@ -31,13 +34,13 @@ class LogFood extends Component {
     ) {
       this.props.history.push('/app');
     }
-    this.initLogFood();
-    this.global.setHeaderTitle('Agregar registro de comida');
+    this.initLogInjection();
+    this.global.setHeaderTitle('Agregar registro de injección');
   }
 
-  initLogFood = () => {
+  initLogInjection = () => {
     const campistId = this.props.match.params.id;
-    this.global.initLogFoodData(campistId);
+    this.global.initLogInjectionData(campistId);
   };
 
   onCloseSnackbar = () => {
@@ -53,13 +56,13 @@ class LogFood extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.setState({ isDisabledSubmit: true });
-    addLog(this.global[LOGFOOD_DATA])
+    addLog(this.global[LOGINJECTION_DATA])
       .finally(() => {
         this.setState({
           isDisabledSubmit: false,
           openSnack: true
         });
-        this.initLogFood();
+        this.initLogInjection();
       })
       .catch(e => {
         console.error('error', e);
@@ -67,39 +70,22 @@ class LogFood extends Component {
   };
 
   handleChangeValue = attName => e => {
-    this.global.logFoodDataAddValue(attName, e.target.value);
+    this.global.logInjectionDataAddValue(attName, e.target.value);
   };
 
   render() {
-    const logFoodData = this.global[LOGFOOD_DATA];
+    const logInjectionData = this.global[LOGINJECTION_DATA];
 
     return (
       <div>
         <Paper className={styles['container-app-bar']} elevation={12} square>
           <form onSubmit={this.handleSubmit}>
             <Grid spacing={8} container>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Tipo de Comida"
-                  margin="dense"
-                  onChange={this.handleChangeValue('foodType')}
-                  required
-                  select
-                  value={logFoodData.foodType}
-                >
-                  {Object.keys(FOOD_TYPES).map(foodTypeName => (
-                    <MenuItem key={foodTypeName} value={foodTypeName}>
-                      {FOOD_TYPES[foodTypeName]}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
               <InsulinInput
                 xs={12}
-                label="Carbohidratos ingeridos"
-                onChange={this.handleChangeValue('carbs')}
-                value={logFoodData.carbs}
+                label="Dosis de insulina"
+                onChange={this.handleChangeValue('dosage')}
+                value={logInjectionData.dosage}
               />
               <Grid item xs={12}>
                 <TextField
@@ -109,10 +95,44 @@ class LogFood extends Component {
                   onChange={this.handleChangeValue('datetime')}
                   required
                   type="datetime-local"
-                  value={logFoodData.datetime}
+                  value={logInjectionData.datetime}
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
+              <FormControl component="fieldset" required>
+                <FormLabel required component="legend">
+                  Tipo de insulina
+                </FormLabel>
+                <RadioGroup
+                  value={logInjectionData.typeInjection}
+                  onChange={this.handleChangeValue('typeInjection')}
+                >
+                  <FormControlLabel
+                    value="Rápida"
+                    control={
+                      <Radio
+                        inputProps={{
+                          name: 'insulinType',
+                          required: true
+                        }}
+                      />
+                    }
+                    label="Rápida"
+                  />
+                  <FormControlLabel
+                    value="Basal"
+                    control={
+                      <Radio
+                        inputProps={{
+                          name: 'insulinType',
+                          required: true
+                        }}
+                      />
+                    }
+                    label="Basal"
+                  />
+                </RadioGroup>
+              </FormControl>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
@@ -121,7 +141,7 @@ class LogFood extends Component {
                   multiline
                   onChange={this.handleChangeValue('description')}
                   rows="3"
-                  value={logFoodData.description}
+                  value={logInjectionData.description}
                 />
               </Grid>
             </Grid>
@@ -165,4 +185,4 @@ class LogFood extends Component {
   }
 }
 
-export default LogFood;
+export default LogInjection;

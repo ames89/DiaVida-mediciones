@@ -41,7 +41,7 @@ export const getNewLogInjectionStore = campistId => {
       campist: campistId,
       type: 'injection',
       dosage: '',
-      datetime: '',
+      datetime: moment().format(moment.HTML5_FMT.DATETIME_LOCAL),
       typeInjection: '',
       description: ''
     }
@@ -68,8 +68,21 @@ addReducer('initLogFoodData', (state, campistId) => {
   };
 });
 
+addReducer('initLogInjectionData', (state, campistId) => {
+  return {
+    ...state,
+    ...getNewLogInjectionStore(campistId)
+  };
+});
+
 addReducer('logFoodDataAddValue', (state, attName, value) => {
   const newState = { ...state };
   newState[LOGFOOD_DATA][attName] = value;
+  return newState;
+});
+
+addReducer('logInjectionDataAddValue', (state, attName, value) => {
+  const newState = { ...state };
+  newState[LOGINJECTION_DATA][attName] = value;
   return newState;
 });
