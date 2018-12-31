@@ -52,9 +52,7 @@ class Details extends Component {
   }
 
   handleTabChange = (e, idx) => {
-    if (process.env.NODE_ENV !== 'production') {
-      this.setState({ tabPosition: idx });
-    }
+    this.setState({ tabPosition: idx });
   };
 
   render() {
