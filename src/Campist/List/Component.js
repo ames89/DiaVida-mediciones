@@ -1,6 +1,13 @@
 import React, { Component } from 'reactn';
 import PropTypes from 'prop-types';
-import { Paper, TextField, InputAdornment, Fab } from '@material-ui/core';
+import {
+  Paper,
+  TextField,
+  InputAdornment,
+  Fab,
+  Grid,
+  MenuItem
+} from '@material-ui/core';
 import { Search, Add as AddIcon } from '@material-ui/icons';
 
 import { getAllCampists } from '../../Store/firebase/Campists';
@@ -8,6 +15,7 @@ import { getAllCampists } from '../../Store/firebase/Campists';
 import Table from './TableList';
 
 import styles from './style.module.scss';
+import { COLORS } from '../../Constants/colors';
 
 class List extends Component {
   static propTypes = {
@@ -17,7 +25,8 @@ class List extends Component {
   state = {
     campists: [],
     campistsFiltered: [],
-    filter: ''
+    filter: '',
+    team: ''
   };
 
   componentDidMount() {
@@ -27,13 +36,19 @@ class List extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { campists } = state;
+    const { campists, team } = state;
+    let campistsLoc = [...campists];
+
+    if (team) {
+      campistsLoc = campistsLoc.filter(campist => campist.team === team);
+    }
+
     const filter = state.filter
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
     if (filter) {
-      state.campistsFiltered = campists.filter(campist => {
+      state.campistsFiltered = campistsLoc.filter(campist => {
         const allText = Object.values(campist)
           .join(',')
           .toLowerCase()
@@ -49,7 +64,7 @@ class List extends Component {
         return contains;
       });
     } else {
-      state.campistsFiltered = campists;
+      state.campistsFiltered = campistsLoc;
     }
     return state;
   }
@@ -78,8 +93,8 @@ class List extends Component {
     });
   };
 
-  handleChangeFilter = e => {
-    this.setState({ filter: e.target.value });
+  handleChangeFilter = name => e => {
+    this.setState({ [name]: e.target.value });
   };
 
   render() {
@@ -89,19 +104,41 @@ class List extends Component {
     return (
       <div>
         <Paper className={styles['container-paper']} square elevation={12}>
-          <TextField
-            value={this.state.filter}
-            onChange={this.handleChangeFilter}
-            className={styles['search-input']}
-            label="Encuentre un campista"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Search />
-                </InputAdornment>
-              )
-            }}
-          />
+          <Grid container spacing={8} className={styles.filters}>
+            <Grid item xs={6}>
+              <TextField
+                value={this.state.filter}
+                onChange={this.handleChangeFilter('filter')}
+                fullWidth
+                margin="dense"
+                label="Nombre"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Search />
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                label="Equipo"
+                margin="dense"
+                onChange={this.handleChangeFilter('team')}
+                select
+                value={this.state.team}
+              >
+                <MenuItem value="" />
+                {Object.keys(COLORS).map(color => (
+                  <MenuItem key={color} value={color}>
+                    {color}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+          </Grid>
           <Table rows={campistsFiltered} />
         </Paper>
         <Fab
