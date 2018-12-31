@@ -22,6 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "firebase deploy",
+    "build-deploy": "npm run build&&npm run deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
