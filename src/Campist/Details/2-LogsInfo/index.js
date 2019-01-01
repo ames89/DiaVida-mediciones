@@ -1,7 +1,6 @@
 import React from 'reactn';
 import { Paper, Grid, Typography } from '@material-ui/core';
 import { getAllLogsPerCampist } from '../../../Store/firebase/Log';
-
 import styles from './style.module.scss';
 import moment from 'moment';
 import {

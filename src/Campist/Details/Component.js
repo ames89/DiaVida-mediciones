@@ -67,7 +67,7 @@ class Details extends Component {
             onChange={this.handleTabChange}
             textColor="primary"
             value={tabPosition}
-            fullWidth
+            variant="fullWidth"
           >
             <Tab label="Información general" />
             <Tab label="Diario" />

@@ -1,5 +1,9 @@
 @import '../generic.scss';
 
+.component {
+  padding-bottom: 60px;
+}
+
 .details {
   padding: 3px 10px;
   &:nth-child(even) {
