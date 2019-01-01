@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Diavida Costa Rica webapp",
+  "name": "Diavida webapp para el regitro de los campistas participantes durante el campamento",
   "icons": [
     {
       "src": "favicon.ico",
