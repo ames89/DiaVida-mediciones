@@ -34,21 +34,25 @@ class FoodPortions extends Generic {
               <Typography variant="h6">Desayuno</Typography>
             </Grid>
             <InsulinInput
+              required={false}
               label="Carb"
               value={foodPortions[BREAKFAST][CARBOHYDRATES]}
               onChange={this.changePortionValue(BREAKFAST, CARBOHYDRATES)}
             />
             <InsulinInput
+              required={false}
               label="Prot"
               value={foodPortions[BREAKFAST][PROTEIN]}
               onChange={this.changePortionValue(BREAKFAST, PROTEIN)}
             />
             <InsulinInput
+              required={false}
               label="Frut"
               value={foodPortions[BREAKFAST][FRUIT]}
               onChange={this.changePortionValue(BREAKFAST, FRUIT)}
             />
             <InsulinInput
+              required={false}
               label="Lact"
               value={foodPortions[BREAKFAST][DAIRY]}
               onChange={this.changePortionValue(BREAKFAST, DAIRY)}
@@ -58,21 +62,25 @@ class FoodPortions extends Generic {
               <Typography variant="h6">Merienda Mañana</Typography>
             </Grid>
             <InsulinInput
+              required={false}
               label="Carb"
               value={foodPortions[MORNING_SNACK][CARBOHYDRATES]}
               onChange={this.changePortionValue(MORNING_SNACK, CARBOHYDRATES)}
             />
             <InsulinInput
+              required={false}
               label="Prot"
               value={foodPortions[MORNING_SNACK][PROTEIN]}
               onChange={this.changePortionValue(MORNING_SNACK, PROTEIN)}
             />
             <InsulinInput
+              required={false}
               label="Frut"
               value={foodPortions[MORNING_SNACK][FRUIT]}
               onChange={this.changePortionValue(MORNING_SNACK, FRUIT)}
             />
             <InsulinInput
+              required={false}
               label="Lact"
               value={foodPortions[MORNING_SNACK][DAIRY]}
               onChange={this.changePortionValue(MORNING_SNACK, DAIRY)}
@@ -82,21 +90,25 @@ class FoodPortions extends Generic {
               <Typography variant="h6">Almuerzo</Typography>
             </Grid>
             <InsulinInput
+              required={false}
               label="Carb"
               value={foodPortions[LUNCH][CARBOHYDRATES]}
               onChange={this.changePortionValue(LUNCH, CARBOHYDRATES)}
             />
             <InsulinInput
+              required={false}
               label="Prot"
               value={foodPortions[LUNCH][PROTEIN]}
               onChange={this.changePortionValue(LUNCH, PROTEIN)}
             />
             <InsulinInput
+              required={false}
               label="Frut"
               value={foodPortions[LUNCH][FRUIT]}
               onChange={this.changePortionValue(LUNCH, FRUIT)}
             />
             <InsulinInput
+              required={false}
               label="Lact"
               value={foodPortions[LUNCH][DAIRY]}
               onChange={this.changePortionValue(LUNCH, DAIRY)}
@@ -106,21 +118,25 @@ class FoodPortions extends Generic {
               <Typography variant="h6">Merienda tarde</Typography>
             </Grid>
             <InsulinInput
+              required={false}
               label="Carb"
               value={foodPortions[AFTERNOON_SNACK][CARBOHYDRATES]}
               onChange={this.changePortionValue(AFTERNOON_SNACK, CARBOHYDRATES)}
             />
             <InsulinInput
+              required={false}
               label="Prot"
               value={foodPortions[AFTERNOON_SNACK][PROTEIN]}
               onChange={this.changePortionValue(AFTERNOON_SNACK, PROTEIN)}
             />
             <InsulinInput
+              required={false}
               label="Frut"
               value={foodPortions[AFTERNOON_SNACK][FRUIT]}
               onChange={this.changePortionValue(AFTERNOON_SNACK, FRUIT)}
             />
             <InsulinInput
+              required={false}
               label="Lact"
               value={foodPortions[AFTERNOON_SNACK][DAIRY]}
               onChange={this.changePortionValue(AFTERNOON_SNACK, DAIRY)}
@@ -130,21 +146,25 @@ class FoodPortions extends Generic {
               <Typography variant="h6">Cena</Typography>
             </Grid>
             <InsulinInput
+              required={false}
               label="Carb"
               value={foodPortions[DINNER][CARBOHYDRATES]}
               onChange={this.changePortionValue(DINNER, CARBOHYDRATES)}
             />
             <InsulinInput
+              required={false}
               label="Prot"
               value={foodPortions[DINNER][PROTEIN]}
               onChange={this.changePortionValue(DINNER, PROTEIN)}
             />
             <InsulinInput
+              required={false}
               label="Frut"
               value={foodPortions[DINNER][FRUIT]}
               onChange={this.changePortionValue(DINNER, FRUIT)}
             />
             <InsulinInput
+              required={false}
               label="Lact"
               value={foodPortions[DINNER][DAIRY]}
               onChange={this.changePortionValue(DINNER, DAIRY)}
@@ -154,21 +174,25 @@ class FoodPortions extends Generic {
               <Typography variant="h6">Merienda antes de Dormir</Typography>
             </Grid>
             <InsulinInput
+              required={false}
               label="Carb"
               value={foodPortions[BEFORE_SLEEP][CARBOHYDRATES]}
               onChange={this.changePortionValue(BEFORE_SLEEP, CARBOHYDRATES)}
             />
             <InsulinInput
+              required={false}
               label="Prot"
               value={foodPortions[BEFORE_SLEEP][PROTEIN]}
               onChange={this.changePortionValue(BEFORE_SLEEP, PROTEIN)}
             />
             <InsulinInput
+              required={false}
               label="Frut"
               value={foodPortions[BEFORE_SLEEP][FRUIT]}
               onChange={this.changePortionValue(BEFORE_SLEEP, FRUIT)}
             />
             <InsulinInput
+              required={false}
               label="Lact"
               value={foodPortions[BEFORE_SLEEP][DAIRY]}
               onChange={this.changePortionValue(BEFORE_SLEEP, DAIRY)}

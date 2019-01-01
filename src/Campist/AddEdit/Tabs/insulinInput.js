@@ -9,12 +9,14 @@ const InsulinInput = props => {
         label={props.label}
         onChange={props.onChange}
         value={props.value}
+        required={props.required}
       />
     </Grid>
   );
 };
 
 InsulinInput.defaultProps = {
+  required: true,
   xs: 3
 };
 

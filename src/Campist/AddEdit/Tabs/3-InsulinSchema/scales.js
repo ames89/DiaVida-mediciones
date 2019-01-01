@@ -35,21 +35,25 @@ class Scales extends React.Component {
           <Typography variant="h6">Desayuno</Typography>
         </Grid>
         <InsulinInput
+          required={false}
           label={LESS_THAN_80}
           onChange={this.setInsulinSchemaValue(BREAKFAST, LESS_THAN_80)}
           value={insulinSchemaScale[BREAKFAST][LESS_THAN_80]}
         />
         <InsulinInput
+          required={false}
           label={BETWEEN_81_160}
           onChange={this.setInsulinSchemaValue(BREAKFAST, BETWEEN_81_160)}
           value={insulinSchemaScale[BREAKFAST][BETWEEN_81_160]}
         />
         <InsulinInput
+          required={false}
           label={BETWEEN_161_250}
           onChange={this.setInsulinSchemaValue(BREAKFAST, BETWEEN_161_250)}
           value={insulinSchemaScale[BREAKFAST][BETWEEN_161_250]}
         />
         <InsulinInput
+          required={false}
           label={BIGGER_THAN_250}
           onChange={this.setInsulinSchemaValue(BREAKFAST, BIGGER_THAN_250)}
           value={insulinSchemaScale[BREAKFAST][BIGGER_THAN_250]}
@@ -58,21 +62,25 @@ class Scales extends React.Component {
           <Typography variant="h6">Almuerzo</Typography>
         </Grid>
         <InsulinInput
+          required={false}
           label={LESS_THAN_80}
           onChange={this.setInsulinSchemaValue(LUNCH, LESS_THAN_80)}
           value={insulinSchemaScale[LUNCH][LESS_THAN_80]}
         />
         <InsulinInput
+          required={false}
           label={BETWEEN_81_160}
           onChange={this.setInsulinSchemaValue(LUNCH, BETWEEN_81_160)}
           value={insulinSchemaScale[LUNCH][BETWEEN_81_160]}
         />
         <InsulinInput
+          required={false}
           label={BETWEEN_161_250}
           onChange={this.setInsulinSchemaValue(LUNCH, BETWEEN_161_250)}
           value={insulinSchemaScale[LUNCH][BETWEEN_161_250]}
         />
         <InsulinInput
+          required={false}
           label={BIGGER_THAN_250}
           onChange={this.setInsulinSchemaValue(LUNCH, BIGGER_THAN_250)}
           value={insulinSchemaScale[LUNCH][BIGGER_THAN_250]}
@@ -81,21 +89,25 @@ class Scales extends React.Component {
           <Typography variant="h6">Cena</Typography>
         </Grid>
         <InsulinInput
+          required={false}
           label={LESS_THAN_80}
           onChange={this.setInsulinSchemaValue(DINNER, LESS_THAN_80)}
           value={insulinSchemaScale[DINNER][LESS_THAN_80]}
         />
         <InsulinInput
+          required={false}
           label={BETWEEN_81_160}
           onChange={this.setInsulinSchemaValue(DINNER, BETWEEN_81_160)}
           value={insulinSchemaScale[DINNER][BETWEEN_81_160]}
         />
         <InsulinInput
+          required={false}
           label={BETWEEN_161_250}
           onChange={this.setInsulinSchemaValue(DINNER, BETWEEN_161_250)}
           value={insulinSchemaScale[DINNER][BETWEEN_161_250]}
         />
         <InsulinInput
+          required={false}
           label={BIGGER_THAN_250}
           onChange={this.setInsulinSchemaValue(DINNER, BIGGER_THAN_250)}
           value={insulinSchemaScale[DINNER][BIGGER_THAN_250]}

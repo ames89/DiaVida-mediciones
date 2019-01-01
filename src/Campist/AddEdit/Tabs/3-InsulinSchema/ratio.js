@@ -23,24 +23,28 @@ class Ratios extends React.Component {
           <Typography variant="h6">Radios de Insulina</Typography>
         </Grid>
         <InsulinInput
+          required={false}
           xs={4}
           label="Desayuno"
           onChange={this.setInsulinSchemaValue(BREAKFAST)}
           value={insulinSchemaRatio[BREAKFAST]}
         />
         <InsulinInput
+          required={false}
           xs={4}
           label="Almuerzo"
           onChange={this.setInsulinSchemaValue(LUNCH)}
           value={insulinSchemaRatio[LUNCH]}
         />
         <InsulinInput
+          required={false}
           xs={4}
           label="Cena"
           onChange={this.setInsulinSchemaValue(DINNER)}
           value={insulinSchemaRatio[DINNER]}
         />
         <InsulinInput
+          required={false}
           xs={12}
           label="Factor de Correccion"
           onChange={this.setInsulinSchemaValue(CORRECTION_FACTOR)}

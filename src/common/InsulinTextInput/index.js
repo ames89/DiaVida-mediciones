@@ -8,7 +8,7 @@ const InsulinTextInput = props => (
     label={props.label}
     margin="dense"
     onChange={props.onChange}
-    required
+    required={props.required}
     type="number"
     value={props.value}
     inputProps={{
@@ -18,7 +18,12 @@ const InsulinTextInput = props => (
   />
 );
 
+InsulinTextInput.defaultProps = {
+  required: true
+};
+
 InsulinTextInput.propTypes = {
+  required: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
