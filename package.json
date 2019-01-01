@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "3.7.1",
+    "@material-ui/core": "3.8.1",
     "@material-ui/icons": "3.0.1",
-    "@material-ui/lab": "^3.0.0-alpha.26",
+    "@material-ui/lab": "^3.0.0-alpha.27",
     "dotenv": "^6.2.0",
     "firebase": "5.7.2",
     "moment": "^2.23.0",
