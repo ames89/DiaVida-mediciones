@@ -9,3 +9,13 @@
 .button-delete {
   color: $red;
 }
+
+.big-container {
+  padding: 10px 0;
+}
+
+.big-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

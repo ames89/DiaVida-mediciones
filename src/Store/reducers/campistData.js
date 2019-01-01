@@ -37,6 +37,7 @@ export const getNewStore = () => {
       age: '',
       weight: '',
       team: '',
+      cabin: '',
       drugs: '',
       allergies: '',
       basalDosage: [getNewBasalDosage()],

@@ -29,6 +29,7 @@ class AddEdit extends Component {
 
   componentDidMount() {
     this.global.initCampistData();
+    this.global.setHeaderGoBack(true);
     if (
       this.props &&
       this.props.match &&
@@ -51,6 +52,10 @@ class AddEdit extends Component {
     } else {
       this.global.setHeaderTitle('Agregar campista');
     }
+  }
+
+  componentWillUnmount() {
+    this.global.setHeaderGoBack(false);
   }
 
   handleTabChange = (e, idx) => {

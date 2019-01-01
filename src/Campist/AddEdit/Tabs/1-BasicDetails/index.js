@@ -37,7 +37,7 @@ class BasicDetails extends Generic {
                 value={campistData.lastNames}
               />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 label="Edad"
@@ -52,7 +52,7 @@ class BasicDetails extends Generic {
                 value={campistData.age}
               />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 label="Peso"
@@ -67,7 +67,7 @@ class BasicDetails extends Generic {
                 value={campistData.weight}
               />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 label="Equipo"
@@ -83,6 +83,16 @@ class BasicDetails extends Generic {
                   </MenuItem>
                 ))}
               </TextField>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                label="Cabaña"
+                margin="dense"
+                onChange={this.saveValue('cabin')}
+                type="text"
+                value={campistData.cabin}
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField

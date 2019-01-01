@@ -52,24 +52,24 @@ class GeneralInfo extends React.Component {
 
     return (
       <Paper className={styles['component']} elevation={0} square>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell align="center">
-                <Typography variant="h5">2</Typography>
-                <Typography variant="caption">años</Typography>
-              </TableCell>
-              <TableCell align="center">
-                <Typography variant="h5">2</Typography>
-                <Typography variant="caption">kilos</Typography>
-              </TableCell>
-              <TableCell align="center">
-                <Typography variant="h5">amarillo</Typography>
-                <Typography variant="caption">equipo</Typography>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <Grid container className={styles['big-container']}>
+          <Grid item xs={3} className={styles['big-info']}>
+            <Typography variant="h5">{campistData.age}</Typography>
+            <Typography variant="caption">años</Typography>
+          </Grid>
+          <Grid item xs={3} className={styles['big-info']}>
+            <Typography variant="h5">{campistData.weight}</Typography>
+            <Typography variant="caption">kilos</Typography>
+          </Grid>
+          <Grid item xs={3} className={styles['big-info']}>
+            <Typography variant="h5">{campistData.team}</Typography>
+            <Typography variant="caption">equipo</Typography>
+          </Grid>
+          <Grid item xs={3} className={styles['big-info']}>
+            <Typography variant="h5">{campistData.cabin || 'N/A'}</Typography>
+            <Typography variant="caption">cabaña</Typography>
+          </Grid>
+        </Grid>
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
             <Typography>Esquema de insulina</Typography>
