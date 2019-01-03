@@ -18,6 +18,7 @@ const Routes = () => {
       <Route path="/app/campist/:id/add-injection" component={LogInjection} />
       <Route path="/app/campist/:id/add-medition" component={LogMedition} />
       <Route path="/app/campist/:id" component={Details} />
+      <Route path="/app/teams" component={AddEdit} />
       <Route>
         <Redirect to="/app" />
       </Route>
