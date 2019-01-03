@@ -9,14 +9,15 @@ import {
 import { MainRoute, PrivateRoute } from './utils';
 
 import Login from '../Login';
-import MainAppView from '../Campist';
+import CampistsAppView from '../Campist';
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <MainRoute />} />
       <Route path="/login" component={Login} />
-      <PrivateRoute path="/app" component={MainAppView} />
+      <PrivateRoute path="/campists" component={CampistsAppView} />
+      <PrivateRoute path="/teams" component={CampistsAppView} />
       <Route>
         <Redirect to="/" />
       </Route>

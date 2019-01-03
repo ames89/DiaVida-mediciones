@@ -22,7 +22,7 @@ const SideList = withRouter(props => (
       <ListItem
         button
         onClick={() => {
-          props.history.push('/app');
+          props.history.push('/campists');
         }}
       >
         <ListItemIcon>
@@ -33,7 +33,7 @@ const SideList = withRouter(props => (
       <ListItem
         button
         onClick={() => {
-          props.history.push('/app/teams');
+          props.history.push('/teams');
         }}
       >
         <ListItemIcon>

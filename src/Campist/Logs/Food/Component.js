@@ -29,7 +29,7 @@ class LogFood extends Component {
         this.props.match.params.id
       )
     ) {
-      this.props.history.push('/app');
+      this.props.history.push('/campists');
     }
     this.initLogFood();
     this.global.setHeaderTitle('Agregar registro de comida');
@@ -52,7 +52,7 @@ class LogFood extends Component {
   };
 
   handleCancel = () => {
-    this.props.history.push(`/app/campist/${this.props.match.params.id}`);
+    this.props.history.push(`/campists/${this.props.match.params.id}`);
   };
 
   handleSubmit = e => {

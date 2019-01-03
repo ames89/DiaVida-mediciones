@@ -47,7 +47,7 @@ class Login extends Component {
       })
       .then(() => {
         this.props.history.push({
-          pathname: '/app',
+          pathname: '/campists',
           state: {}
         });
       })

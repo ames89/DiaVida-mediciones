@@ -31,7 +31,7 @@ export const MainRoute = () => {
       path="/"
       render={() => {
         if (fb.auth().currentUser) {
-          return <Redirect to="/app" />;
+          return <Redirect to="/campists" />;
         }
         return <Redirect to="/login" />;
       }}

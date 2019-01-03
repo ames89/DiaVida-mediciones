@@ -29,7 +29,7 @@ class GeneralInfo extends React.Component {
   handleClickEdit = () => {
     const id = this.props.match.params.id;
     const { history } = this.props;
-    history.push(`/app/campist/edit/${id}`);
+    history.push(`/campists/edit/${id}`);
   };
 
   handleClickDelete = () => {
@@ -43,7 +43,7 @@ class GeneralInfo extends React.Component {
     this.setState({ loading: true });
     this.props.document.update(this.global[CAMPIST_DATA]).then(() => {
       this.setState({ loading: false });
-      history.push('/app');
+      history.push('/campists');
     });
   };
 
