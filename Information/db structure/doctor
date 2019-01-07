@@ -1,0 +1,7 @@
+doctor
+-nombre: names
+-apellido: lastNames
+-guardia: dutyDays
+-telefono: phone
+-correo: email
+-especialidad: speciality

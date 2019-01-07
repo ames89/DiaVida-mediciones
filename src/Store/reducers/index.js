@@ -6,12 +6,14 @@ import {
   getNewLogInjectionStore,
   getNewLogMeditionStore
 } from './logsData';
+import { getNewStore as getNewDoctor } from './doctorData';
 
 const initData = {
   ...headerTitleStore,
   ...campistDataStore(),
   ...getNewLogFoodStore(),
   ...getNewLogInjectionStore(),
-  ...getNewLogMeditionStore()
+  ...getNewLogMeditionStore(),
+  ...getNewDoctor()
 };
 setGlobal(initData);

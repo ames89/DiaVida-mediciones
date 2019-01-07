@@ -39,7 +39,7 @@ const SideList = withRouter(props => (
         <ListItemIcon>
           <People />
         </ListItemIcon>
-        <ListItemText primary="Equipos" />
+        <ListItemText primary="Personal" />
       </ListItem>
     </List>
   </div>
