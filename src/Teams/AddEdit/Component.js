@@ -8,7 +8,8 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
-  FormControlLabel
+  FormControlLabel,
+  Button
 } from '@material-ui/core';
 
 import SuccessSnackbar from '../../common/SuccessSnackbar';
@@ -92,16 +93,20 @@ class AddEdit extends Component {
     this.setState({ creationType: e.target.value });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+  };
+
   render() {
     const { creationType } = this.state;
     return (
       <div>
         <Paper className={styles['container-app-bar']} elevation={12} square>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <Grid container spacing={8}>
               <Grid item xs={12}>
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">
+                <FormControl required component="fieldset">
+                  <FormLabel required component="legend">
                     Tipo de usuario a crear
                   </FormLabel>
                   <RadioGroup
@@ -111,26 +116,46 @@ class AddEdit extends Component {
                   >
                     <FormControlLabel
                       value={DOCTOR}
-                      control={<Radio />}
+                      control={
+                        <Radio
+                          inputProps={{
+                            name: 'CreationType',
+                            required: true
+                          }}
+                        />
+                      }
                       label="Doctor(a)/Enfermero(a)"
-                      inputprops={{
-                        name: 'CreationType',
-                        required: true
-                      }}
                     />
                     <FormControlLabel
                       value={STAFF}
-                      control={<Radio />}
+                      control={
+                        <Radio
+                          inputprops={{
+                            name: 'CreationType',
+                            required: true
+                          }}
+                        />
+                      }
                       label="Staff"
-                      inputprops={{
-                        name: 'CreationType',
-                        required: true
-                      }}
                     />
                   </RadioGroup>
                 </FormControl>
               </Grid>
               {creationType === DOCTOR && <DoctorInfo />}
+              <Grid item xs={12}>
+                <Grid container justify="flex-end">
+                  <Grid item>
+                    <Button
+                      color="primary"
+                      size="small"
+                      variant="contained"
+                      type="submit"
+                    >
+                      Almacenar
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
           </form>
           {this.state.loading && (

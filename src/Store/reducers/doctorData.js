@@ -6,8 +6,15 @@ export const DOCTOR_SHIFT = {
   NIGHT: 'Noche'
 };
 
+export const DOCTOR_DAY = {
+  FRIDAY: 'Viernes',
+  SATURDAY: 'Sábado',
+  SUNDAY: 'Domingo'
+};
+
 export const getNewDutyDay = () => {
   return {
+    day: '',
     shift: ''
   };
 };
@@ -44,4 +51,22 @@ addReducer('doctorDataSet', (state, data) => {
     ...state,
     [DOCTOR_DATA]: data
   };
+});
+
+addReducer('doctorDataAddDutyDay', state => {
+  const newState = { ...state };
+  newState[DOCTOR_DATA].dutyDays.push(getNewDutyDay());
+  return newState;
+});
+
+addReducer('doctorDataRemoveDutyDay', (stage, idx) => {
+  const newState = { ...stage };
+  newState[DOCTOR_DATA].dutyDays.splice(idx, 1);
+  return newState;
+});
+
+addReducer('doctorDataEditDutyDay', (stage, idx, key, value) => {
+  const newState = { ...stage };
+  newState[DOCTOR_DATA].dutyDays[idx][key] = value;
+  return newState;
 });
