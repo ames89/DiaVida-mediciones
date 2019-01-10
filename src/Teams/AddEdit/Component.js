@@ -16,6 +16,8 @@ import SuccessSnackbar from '../../common/SuccessSnackbar';
 
 import styles from './style.module.scss';
 import DoctorInfo from './DoctorInfo';
+import { DOCTOR_DATA } from '../../Store/reducers/storeNames';
+import { addDoctor } from '../../Store/firebase/Doctors';
 
 const DOCTOR = 'doctor';
 const STAFF = 'staff';
@@ -33,8 +35,8 @@ class AddEdit extends Component {
   };
 
   componentDidMount() {
-    // this.global.initCampistData();
     this.global.setHeaderGoBack(true);
+    this.global.setHeaderTitle('Agregar personal');
     // if (
     //   this.props &&
     //   this.props.match &&
@@ -55,7 +57,6 @@ class AddEdit extends Component {
     //       this.props.history.push('/campists');
     //     });
     // } else {
-    this.global.setHeaderTitle('Agregar personal');
     // }
   }
 
@@ -68,25 +69,30 @@ class AddEdit extends Component {
   };
 
   submitData = () => {
-    // this.setState({ isDisabledSubmit: true });
-    // let promise;
-    // if (this.document) {
-    //   promise = this.document.update(this.global[CAMPIST_DATA]);
-    // } else {
-    //   promise = addCampist(this.global[CAMPIST_DATA]).then(() => {
-    //     this.global.initCampistData();
-    //     this.setState({
-    //       tabPosition: 0
-    //     });
-    //   });
-    // }
-    // promise
-    //   .finally(() => {
-    //     this.setState({ isDisabledSubmit: false, openSnack: true });
-    //   })
-    //   .catch(e => {
-    //     console.error('error', e);
-    //   });
+    const { creationType } = this.state;
+    this.setState({
+      isDisabledSubmit: true
+    });
+    let promise;
+    if (creationType === DOCTOR) {
+      promise = addDoctor(this.global[DOCTOR_DATA]);
+    }
+    if (creationType === STAFF) {
+      // TODO
+    }
+    promise
+      .finally(() => {
+        this.global.initDoctorData();
+        // this.global.initStaffData();
+        this.setState({
+          isDisabledSubmit: false,
+          openSnack: true,
+          creationType: ''
+        });
+      })
+      .catch(e => {
+        console.error('error', e);
+      });
   };
 
   handleChangeCreationType = e => {
@@ -95,10 +101,11 @@ class AddEdit extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.submitData();
   };
 
   render() {
-    const { creationType } = this.state;
+    const { creationType, isDisabledSubmit } = this.state;
     return (
       <div>
         <Paper className={styles['container-app-bar']} elevation={12} square>
@@ -150,6 +157,7 @@ class AddEdit extends Component {
                       size="small"
                       variant="contained"
                       type="submit"
+                      disabled={isDisabledSubmit}
                     >
                       Almacenar
                     </Button>
@@ -167,11 +175,7 @@ class AddEdit extends Component {
         <SuccessSnackbar
           onClose={this.onCloseSnackbar}
           isOpen={this.state.openSnack}
-          message={
-            this.props.match.params.id
-              ? 'El campista se ha actualizado correctamente'
-              : 'El campista se ha almacenado correctamente'
-          }
+          message="El personal se ha almacenado exitosamente"
         />
       </div>
     );
