@@ -1,19 +1,28 @@
 import React from 'reactn';
-import { Paper, TextField, Grid } from '@material-ui/core';
+import {
+  Paper,
+  TextField,
+  Grid,
+  FormControl,
+  InputLabel,
+  NativeSelect
+} from '@material-ui/core';
 
-import { DOCTOR_DATA } from '../../../Store/reducers/storeNames';
+import { STAFF_DATA } from '../../../Store/reducers/storeNames';
+import { COLORS } from '../../../Constants/colors';
+import { STAFF_RANKS } from '../../../Store/reducers/staffData';
 
 class StaffInfo extends React.Component {
   componentDidMount() {
-    this.global.initDoctorData();
+    this.global.initStaffData();
   }
 
   saveValue = item => e => {
-    this.global.doctorDataSetValue(item, e.target.value);
+    this.global.staffDataSetValue(item, e.target.value);
   };
 
   render() {
-    const doctorData = this.global[DOCTOR_DATA];
+    const staffData = this.global[STAFF_DATA];
 
     return (
       <Paper elevation={0} square>
@@ -26,7 +35,7 @@ class StaffInfo extends React.Component {
               onChange={this.saveValue('names')}
               required
               type="text"
-              value={doctorData.names}
+              value={staffData.names}
             />
           </Grid>
           <Grid item xs={6}>
@@ -37,7 +46,18 @@ class StaffInfo extends React.Component {
               onChange={this.saveValue('lastNames')}
               required
               type="text"
-              value={doctorData.lastNames}
+              value={staffData.lastNames}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Email"
+              margin="dense"
+              onChange={this.saveValue('email')}
+              required
+              type="email"
+              value={staffData.email}
             />
           </Grid>
           <Grid item xs={6}>
@@ -48,30 +68,55 @@ class StaffInfo extends React.Component {
               onChange={this.saveValue('phone')}
               required
               type="tel"
-              value={doctorData.phone}
+              value={staffData.phone}
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Email"
+              label="Edad"
               margin="dense"
-              onChange={this.saveValue('email')}
+              onChange={this.saveValue('age')}
               required
-              type="email"
-              value={doctorData.email}
+              type="number"
+              inputProps={{
+                min: 0,
+                step: 1
+              }}
+              value={staffData.age}
             />
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Especialidad"
-              margin="dense"
-              onChange={this.saveValue('speciality')}
-              required
-              type="text"
-              value={doctorData.speciality}
-            />
+          <Grid item xs={6}>
+            <FormControl fullWidth margin="dense">
+              <InputLabel>Equipo</InputLabel>
+              <NativeSelect
+                value={staffData.team}
+                onChange={this.saveValue('team')}
+              >
+                <option value="" />
+                {Object.keys(COLORS).map(color => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
+                ))}
+              </NativeSelect>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6}>
+            <FormControl fullWidth margin="dense">
+              <InputLabel>Rango</InputLabel>
+              <NativeSelect
+                value={staffData.rank}
+                onChange={this.saveValue('rank')}
+              >
+                <option value="" />
+                {Object.keys(STAFF_RANKS).map(rank => (
+                  <option key={rank} value={rank}>
+                    {STAFF_RANKS[rank]}
+                  </option>
+                ))}
+              </NativeSelect>
+            </FormControl>
           </Grid>
         </Grid>
       </Paper>

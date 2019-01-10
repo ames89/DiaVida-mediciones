@@ -7,3 +7,4 @@ export const LOGINJECTION_DATA = 'logInjectionData';
 export const LOGMEDITION_DATA = 'logMeditionData';
 
 export const DOCTOR_DATA = 'doctorData';
+export const STAFF_DATA = 'staffData';

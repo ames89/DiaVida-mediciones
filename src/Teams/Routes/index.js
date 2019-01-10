@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import List from '../List';
 import AddEdit from '../AddEdit';
+import { AdminRoute } from '../../Routes/utils';
 // import Details from '../Details';
 
 // TODO: hacer
@@ -13,7 +14,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/teams/" exact component={List} />
-      <Route path="/teams/new" exact component={AddEdit} />
+      <AdminRoute path="/teams/new" exact component={AddEdit} />
       <Route path="/teams/*">
         <Redirect to="/teams" />
       </Route>

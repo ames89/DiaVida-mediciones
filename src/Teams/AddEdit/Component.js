@@ -16,8 +16,10 @@ import SuccessSnackbar from '../../common/SuccessSnackbar';
 
 import styles from './style.module.scss';
 import DoctorInfo from './DoctorInfo';
-import { DOCTOR_DATA } from '../../Store/reducers/storeNames';
+import { DOCTOR_DATA, STAFF_DATA } from '../../Store/reducers/storeNames';
 import { addDoctor } from '../../Store/firebase/Doctors';
+import StaffInfo from './StaffInfo';
+import { addStaff } from '../../Store/firebase/Staff';
 
 const DOCTOR = 'doctor';
 const STAFF = 'staff';
@@ -78,12 +80,12 @@ class AddEdit extends Component {
       promise = addDoctor(this.global[DOCTOR_DATA]);
     }
     if (creationType === STAFF) {
-      // TODO
+      promise = addStaff(this.global[STAFF_DATA]);
     }
     promise
       .finally(() => {
         this.global.initDoctorData();
-        // this.global.initStaffData();
+        this.global.initStaffData();
         this.setState({
           isDisabledSubmit: false,
           openSnack: true,
@@ -127,7 +129,7 @@ class AddEdit extends Component {
                         <Radio
                           inputProps={{
                             name: 'CreationType',
-                            required: true
+                            required: !creationType
                           }}
                         />
                       }
@@ -139,7 +141,7 @@ class AddEdit extends Component {
                         <Radio
                           inputprops={{
                             name: 'CreationType',
-                            required: true
+                            required: !creationType
                           }}
                         />
                       }
@@ -149,6 +151,7 @@ class AddEdit extends Component {
                 </FormControl>
               </Grid>
               {creationType === DOCTOR && <DoctorInfo />}
+              {creationType === STAFF && <StaffInfo />}
               <Grid item xs={12}>
                 <Grid container justify="flex-end">
                   <Grid item>
