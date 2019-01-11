@@ -1,21 +1,13 @@
 import React, { Component } from 'reactn';
 import PropTypes from 'prop-types';
-import {
-  Paper,
-  TextField,
-  InputAdornment,
-  Fab,
-  Grid,
-  MenuItem
-} from '@material-ui/core';
-import { Search, Add as AddIcon } from '@material-ui/icons';
-
-import { getAllCampists } from '../../Store/firebase/Campists';
-
-import Table from './TableList';
+import { Paper, Fab, AppBar, Tabs, Tab } from '@material-ui/core';
+import { Add as AddIcon } from '@material-ui/icons';
+import SwipeableViews from 'react-swipeable-views';
 
 import styles from './style.module.scss';
-import { COLORS } from '../../Constants/colors';
+import isAdmin from '../../utils/isAdmin';
+import StaffList from './StaffList';
+import DoctorsList from './DoctorsList';
 
 class List extends Component {
   static propTypes = {
@@ -23,133 +15,55 @@ class List extends Component {
   };
 
   state = {
-    campists: [],
-    campistsFiltered: [],
-    filter: '',
-    team: ''
+    isAdmin: false,
+    tabPosition: 0
   };
 
   componentDidMount() {
-    this.global.setHeaderTitle('Lista de Campistas');
-
-    this.hidrateCampists();
+    this.global.setHeaderTitle('Personal');
+    isAdmin().then(res => this.setState({ isAdmin: res }));
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const { campists, team } = state;
-    let campistsLoc = [...campists];
-
-    if (team) {
-      campistsLoc = campistsLoc.filter(campist => campist.team === team);
-    }
-
-    const filter = state.filter
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-    if (filter) {
-      state.campistsFiltered = campistsLoc.filter(campist => {
-        const allText = Object.values(campist)
-          .join(',')
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '');
-        let contains = true;
-
-        filter.split(' ').forEach(word => {
-          if (!allText.includes(word)) {
-            contains = false;
-          }
-        });
-        return contains;
-      });
-    } else {
-      state.campistsFiltered = campistsLoc;
-    }
-    return state;
-  }
-
-  hidrateCampists = () => {
-    getAllCampists().then(docs => {
-      const campists = [];
-      docs.forEach(doc => {
-        const data = doc.data();
-        data.id = doc.id;
-        const index = campists.findIndex(camp => doc.id === camp.id);
-
-        if (index < 0) {
-          campists.push(data);
-        } else {
-          campists[index] = data;
-        }
-      });
-      const sorted = campists
-        .sort((a, b) =>
-          a.names.toLowerCase().localeCompare(b.names.toLowerCase())
-        )
-        .sort((a, b) => a.team.localeCompare(b.team));
-
-      this.setState({ campists: sorted });
-    });
+  handleAdd = () => {
+    const { history } = this.props;
+    history.push('/teams/new');
   };
 
-  handleChangeFilter = name => e => {
-    this.setState({ [name]: e.target.value });
+  handleTabChange = (e, idx) => {
+    this.setState({ tabPosition: idx });
   };
 
   render() {
-    const { campistsFiltered } = this.state;
-    const { history } = this.props;
-
+    const { isAdmin, tabPosition } = this.state;
     return (
       <div>
         <Paper className={styles['container-paper']} square elevation={12}>
-          <Grid container spacing={8} className={styles.filters}>
-            <Grid item xs={6}>
-              <TextField
-                value={this.state.filter}
-                onChange={this.handleChangeFilter('filter')}
-                fullWidth
-                margin="dense"
-                label="Nombre"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Search />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                label="Equipo"
-                margin="dense"
-                onChange={this.handleChangeFilter('team')}
-                select
-                value={this.state.team}
-              >
-                <MenuItem value="" />
-                {Object.keys(COLORS).map(color => (
-                  <MenuItem key={color} value={color}>
-                    {color}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-          </Grid>
-          <Table rows={campistsFiltered} />
+          <AppBar position="static" color="default">
+            <Tabs
+              indicatorColor="primary"
+              onChange={this.handleTabChange}
+              variant="fullWidth"
+              textColor="primary"
+              value={tabPosition}
+            >
+              <Tab label="Personal de Apoyo" />
+              <Tab label="Personal Médico" />
+            </Tabs>
+          </AppBar>
+          <SwipeableViews axis="x" index={tabPosition}>
+            <StaffList />
+            <DoctorsList />
+          </SwipeableViews>
         </Paper>
-        <Fab
-          className={styles['fab-button']}
-          color="primary"
-          onClick={() => {
-            history.push('/campists/new');
-          }}
-        >
-          <AddIcon />
-        </Fab>
+        {isAdmin && (
+          <Fab
+            className={styles['fab-button']}
+            color="primary"
+            onClick={this.handleAdd}
+          >
+            <AddIcon />
+          </Fab>
+        )}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 
 import fb from '../Store/firebase';
 import Loading from '../common/Loading';
-import { getStaffByEmail } from '../Store/firebase/Staff';
+import isAdmin from '../utils/isAdmin';
 
 export const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   return (
@@ -30,11 +30,8 @@ class AdminLoader extends React.Component {
   state = { loading: true };
 
   componentDidMount() {
-    getStaffByEmail(fb.auth().currentUser.email).then(data => {
-      if (
-        process.env.NODE_ENV === 'development' ||
-        (data && data.doc && data.doc.isAdmin)
-      ) {
+    isAdmin().then(res => {
+      if (res) {
         this.setState({ loading: false });
       } else {
         this.props.history.push('/login');
