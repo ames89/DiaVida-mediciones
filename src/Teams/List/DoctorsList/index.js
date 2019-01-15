@@ -43,7 +43,7 @@ class DoctorsList extends Component {
   }
 
   onClickRow = id => () => {
-    this.props.history.push(`/teams/${id}`);
+    this.props.history.push(`/teams/doctor/${id}`);
   };
 
   render() {

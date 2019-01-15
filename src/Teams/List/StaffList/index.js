@@ -44,7 +44,7 @@ class StaffList extends Component {
   }
 
   onClickRow = id => () => {
-    this.props.history.push(`/teams/${id}`);
+    this.props.history.push(`/teams/staff/${id}`);
   };
 
   render() {
