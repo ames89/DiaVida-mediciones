@@ -13,15 +13,16 @@ import { COLORS } from '../../../Constants/colors';
 import { STAFF_RANKS } from '../../../Store/reducers/staffData';
 
 class StaffInfo extends React.Component {
-  componentDidMount() {
-    this.global.initStaffData();
-  }
+  static defaultProps = {
+    isEditable: false
+  };
 
   saveValue = item => e => {
     this.global.staffDataSetValue(item, e.target.value);
   };
 
   render() {
+    const { isEditable } = this.props;
     const staffData = this.global[STAFF_DATA];
 
     return (
@@ -29,6 +30,7 @@ class StaffInfo extends React.Component {
         <Grid container spacing={8}>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Nombres"
               margin="dense"
@@ -40,6 +42,7 @@ class StaffInfo extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Apellidos"
               margin="dense"
@@ -51,6 +54,7 @@ class StaffInfo extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Email"
               margin="dense"
@@ -62,6 +66,7 @@ class StaffInfo extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Telefono"
               margin="dense"
@@ -73,6 +78,7 @@ class StaffInfo extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Edad"
               margin="dense"
@@ -90,6 +96,7 @@ class StaffInfo extends React.Component {
             <FormControl fullWidth margin="dense">
               <InputLabel>Equipo</InputLabel>
               <NativeSelect
+                disabled={!isEditable}
                 value={staffData.team}
                 onChange={this.saveValue('team')}
               >
@@ -106,6 +113,7 @@ class StaffInfo extends React.Component {
             <FormControl fullWidth margin="dense">
               <InputLabel>Rango</InputLabel>
               <NativeSelect
+                disabled={!isEditable}
                 value={staffData.rank}
                 onChange={this.saveValue('rank')}
               >

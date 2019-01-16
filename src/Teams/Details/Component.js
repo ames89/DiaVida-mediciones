@@ -63,6 +63,8 @@ class Details extends Component {
 
     return (
       <Paper className={styles['container']} elevation={12} square>
+        {type === 'doctor'}
+        {type === 'staff'}
         {this.state.loading && (
           <div className={styles.loader}>
             <CircularProgress disableShrink />

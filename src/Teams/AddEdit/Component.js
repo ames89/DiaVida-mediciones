@@ -39,27 +39,8 @@ class AddEdit extends Component {
   componentDidMount() {
     this.global.setHeaderGoBack(true);
     this.global.setHeaderTitle('Agregar personal');
-    // if (
-    //   this.props &&
-    //   this.props.match &&
-    //   this.props.match.params &&
-    //   this.props.match.params.id
-    // ) {
-    //   const id = this.props.match.params.id;
-    //   this.setState({ loading: true });
-    //   this.global.setHeaderTitle('Editar campista');
-    //   getCampistById(id)
-    //     .then(data => {
-    //       this.document = data.doc;
-    //       this.global.campistDataSet(data.docSnapshot.data());
-    //       this.setState({ loading: false });
-    //     })
-    //     .catch(err => {
-    //       console.error(err);
-    //       this.props.history.push('/campists');
-    //     });
-    // } else {
-    // }
+    this.global.initDoctorData();
+    this.global.initStaffData();
   }
 
   componentWillUnmount() {
@@ -150,8 +131,8 @@ class AddEdit extends Component {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              {creationType === DOCTOR && <DoctorInfo />}
-              {creationType === STAFF && <StaffInfo />}
+              {creationType === DOCTOR && <DoctorInfo isEditable={true} />}
+              {creationType === STAFF && <StaffInfo isEditable={true} />}
               <Grid item xs={12}>
                 <Grid container justify="flex-end">
                   <Grid item>

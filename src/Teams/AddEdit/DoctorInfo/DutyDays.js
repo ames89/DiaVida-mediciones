@@ -23,12 +23,14 @@ class DutyDays extends React.Component {
     const { dutyDays } = this.global[DOCTOR_DATA];
 
     return dutyDays.map((day, idx) => {
+      const { isEditable } = this.props;
       return (
         <Fragment key={idx}>
           <Grid item xs={5}>
             <FormControl fullWidth margin="dense" required>
               <InputLabel>Día</InputLabel>
               <NativeSelect
+                disabled={!isEditable}
                 required
                 value={day.day}
                 onChange={this.changeDutyDay(idx, 'day')}
@@ -46,6 +48,7 @@ class DutyDays extends React.Component {
             <FormControl fullWidth margin="dense" required>
               <InputLabel>Guardia</InputLabel>
               <NativeSelect
+                disabled={!isEditable}
                 required
                 value={day.shift}
                 onChange={this.changeDutyDay(idx, 'shift')}
@@ -59,11 +62,16 @@ class DutyDays extends React.Component {
               </NativeSelect>
             </FormControl>
           </Grid>
-          <Grid item xs={2}>
-            <IconButton onClick={this.removeDutyDay(idx)}>
-              <Delete />
-            </IconButton>
-          </Grid>
+          {isEditable && (
+            <Grid item xs={2}>
+              <IconButton
+                disabled={!isEditable}
+                onClick={this.removeDutyDay(idx)}
+              >
+                <Delete />
+              </IconButton>
+            </Grid>
+          )}
         </Fragment>
       );
     });

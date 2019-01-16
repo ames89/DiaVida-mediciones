@@ -7,9 +7,9 @@ import styles from './style.module.scss';
 import DutyDays from './DutyDays';
 
 class DoctorInfo extends React.Component {
-  componentDidMount() {
-    this.global.initDoctorData();
-  }
+  static defaultProps = {
+    isEditable: false
+  };
 
   saveValue = item => e => {
     this.global.doctorDataSetValue(item, e.target.value);
@@ -20,6 +20,7 @@ class DoctorInfo extends React.Component {
   };
 
   render() {
+    const { isEditable } = this.props;
     const doctorData = this.global[DOCTOR_DATA];
 
     return (
@@ -27,6 +28,7 @@ class DoctorInfo extends React.Component {
         <Grid container spacing={8}>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Nombres"
               margin="dense"
@@ -38,6 +40,7 @@ class DoctorInfo extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Apellidos"
               margin="dense"
@@ -49,6 +52,7 @@ class DoctorInfo extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Telefono"
               margin="dense"
@@ -60,6 +64,7 @@ class DoctorInfo extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Email"
               margin="dense"
@@ -71,6 +76,7 @@ class DoctorInfo extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              disabled={!isEditable}
               fullWidth
               label="Especialidad"
               margin="dense"
@@ -89,17 +95,20 @@ class DoctorInfo extends React.Component {
               Guardias
             </Typography>
           </Grid>
-          <DutyDays />
-          <Grid item xs={12}>
-            <Fab
-              size="small"
-              color="primary"
-              aria-label="Add"
-              onClick={this.addDutyDay}
-            >
-              <Add />
-            </Fab>
-          </Grid>
+          <DutyDays isEditable={isEditable} />
+          {isEditable && (
+            <Grid item xs={12}>
+              <Fab
+                disabled={!isEditable}
+                size="small"
+                color="primary"
+                aria-label="Add"
+                onClick={this.addDutyDay}
+              >
+                <Add />
+              </Fab>
+            </Grid>
+          )}
         </Grid>
       </Paper>
     );
