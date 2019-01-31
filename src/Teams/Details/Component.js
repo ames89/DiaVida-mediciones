@@ -4,6 +4,8 @@ import { Paper, CircularProgress } from '@material-ui/core';
 import styles from './style.module.scss';
 import { getDoctorById } from '../../Store/firebase/Doctors';
 import { getStaffById } from '../../Store/firebase/Staff';
+import StaffInfo from '../AddEdit/StaffInfo';
+import DoctorInfo from '../AddEdit/DoctorInfo';
 
 class Details extends Component {
   state = {
@@ -27,14 +29,14 @@ class Details extends Component {
           if (!data.docSnapshot.exists) {
             throw new Error('does not exists');
           }
-          this.global.campistDataSet(data.docSnapshot.data());
+          this.global.doctorDataSet(data.docSnapshot.data());
         });
       } else {
         promise = getStaffById(id).then(data => {
           if (!data.docSnapshot.exists) {
             throw new Error('does not exists');
           }
-          this.global.doctorDataSet(data.docSnapshot.data());
+          this.global.staffDataSet(data.docSnapshot.data());
         });
       }
       promise
@@ -46,7 +48,7 @@ class Details extends Component {
           this.props.history.push('/teams');
         });
     } else {
-      this.props.history.push('/campists');
+      this.props.history.push('/teams');
     }
   }
 
@@ -54,17 +56,13 @@ class Details extends Component {
     this.global.setHeaderGoBack(false);
   }
 
-  handleTabChange = (e, idx) => {
-    this.setState({ tabPosition: idx });
-  };
-
   render() {
     const { type, id } = this.props.match.params;
 
     return (
       <Paper className={styles['container']} elevation={12} square>
-        {type === 'doctor'}
-        {type === 'staff'}
+        {type === 'doctor' && <DoctorInfo />}
+        {type === 'staff' && <StaffInfo />}
         {this.state.loading && (
           <div className={styles.loader}>
             <CircularProgress disableShrink />

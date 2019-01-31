@@ -50,7 +50,7 @@ class DoctorsList extends Component {
     const { rows } = this.state;
 
     return (
-      <Table>
+      <Table padding="checkbox">
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>

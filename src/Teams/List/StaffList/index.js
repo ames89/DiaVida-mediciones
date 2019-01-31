@@ -51,7 +51,7 @@ class StaffList extends Component {
     const { rows } = this.state;
 
     return (
-      <Table>
+      <Table padding="checkbox">
         <TableHead>
           <TableRow>
             <TableCell className={styles['table-cell-color']} />
