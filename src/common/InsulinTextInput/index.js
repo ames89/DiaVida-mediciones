@@ -9,7 +9,7 @@ const InsulinTextInput = props => (
     margin="dense"
     onChange={props.onChange}
     required={props.required}
-    type="number"
+    type="text"
     value={props.value}
     inputProps={{
       min: 0,
