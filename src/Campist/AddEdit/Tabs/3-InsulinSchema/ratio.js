@@ -20,7 +20,7 @@ class Ratios extends React.Component {
     return (
       <Grid container spacing={8}>
         <Grid item xs={12}>
-          <Typography variant="h6">Radios de Insulina</Typography>
+          <Typography variant="h6">Ratios de Insulina</Typography>
         </Grid>
         <InsulinInput
           required={false}
