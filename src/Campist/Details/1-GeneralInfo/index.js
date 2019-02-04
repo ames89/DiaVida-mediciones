@@ -67,7 +67,7 @@ class GeneralInfo extends React.Component {
           </Grid>
           <Grid item xs={3} className={styles['big-info']}>
             <Typography variant="h5">{campistData.cabin || 'N/A'}</Typography>
-            <Typography variant="caption">cabaña</Typography>
+            <Typography variant="caption">cama</Typography>
           </Grid>
         </Grid>
         <ExpansionPanel>
