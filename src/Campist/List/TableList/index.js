@@ -20,7 +20,7 @@ class TableList extends Component {
   };
 
   onClickRow = id => () => {
-    this.props.history.push(`/app/campist/${id}`);
+    this.props.history.push(`/campists/${id}`);
   };
 
   render() {

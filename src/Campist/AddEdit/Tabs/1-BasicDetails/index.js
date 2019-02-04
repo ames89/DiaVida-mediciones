@@ -87,7 +87,7 @@ class BasicDetails extends Generic {
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                label="Cabaña"
+                label="Cama"
                 margin="dense"
                 onChange={this.saveValue('cabin')}
                 type="text"

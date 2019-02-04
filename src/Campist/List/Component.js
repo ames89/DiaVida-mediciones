@@ -145,7 +145,7 @@ class List extends Component {
           className={styles['fab-button']}
           color="primary"
           onClick={() => {
-            history.push('/app/campist/new');
+            history.push('/campists/new');
           }}
         >
           <AddIcon />

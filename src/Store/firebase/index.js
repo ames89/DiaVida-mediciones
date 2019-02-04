@@ -18,7 +18,7 @@ const firebaseInitApp = firebase.initializeApp(config);
 
 // FIX FOR NEW VERSIONS
 const firestore = firebaseInitApp.firestore();
-firestore.settings({ timestampsInSnapshots: true });
+firestore.settings({});
 
 // ENABLE PERSISTENCE
 firebaseInitApp

@@ -40,10 +40,10 @@ class Details extends Component {
         })
         .catch(err => {
           console.error(err);
-          this.props.history.push('/app');
+          this.props.history.push('/campists');
         });
     } else {
-      this.props.history.push('/app');
+      this.props.history.push('/campists');
     }
   }
 
@@ -88,7 +88,7 @@ class Details extends Component {
               name: 'Comida',
               handler: () => {
                 const { history } = this.props;
-                history.push(`/app/campist/${id}/add-food`);
+                history.push(`/campists/${id}/add-food`);
               }
             },
             {
@@ -98,7 +98,7 @@ class Details extends Component {
               name: 'Medición de glucosa',
               handler: () => {
                 const { history } = this.props;
-                history.push(`/app/campist/${id}/add-medition`);
+                history.push(`/campists/${id}/add-medition`);
               }
             },
             {
@@ -108,7 +108,7 @@ class Details extends Component {
               name: 'Inyección',
               handler: () => {
                 const { history } = this.props;
-                history.push(`/app/campist/${id}/add-injection`);
+                history.push(`/campists/${id}/add-injection`);
               }
             }
           ]}

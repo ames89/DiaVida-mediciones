@@ -47,7 +47,7 @@ class AddEdit extends Component {
         })
         .catch(err => {
           console.error(err);
-          this.props.history.push('/app');
+          this.props.history.push('/campists');
         });
     } else {
       this.global.setHeaderTitle('Agregar campista');

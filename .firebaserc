@@ -1,6 +1,6 @@
 {
   "projects": {
     "dev": "diavida-dev-costa-rica",
-    "production": "diavida-costa-rica-2018"
+    "prod": "diavida-costa-rica-2019"
   }
 }
