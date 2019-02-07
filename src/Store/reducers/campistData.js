@@ -25,7 +25,8 @@ export const CORRECTION_FACTOR = 'correctionFactor';
 
 export const getNewBasalDosage = () => ({
   dosage: '',
-  time: ''
+  time: '',
+  comment: ''
 });
 
 export const getNewStore = () => {

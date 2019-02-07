@@ -16,7 +16,7 @@ import { Add as AddIcon, Delete as DeleteIcon } from '@material-ui/icons';
 import styles from './style.module.scss';
 import InsulinTextInput from '../../../../common/InsulinTextInput';
 
-class BasicDetails extends Generic {
+class BasalDosage extends Generic {
   addBasal = () => {
     this.global.campistDataBasalDosageAdd();
   };
@@ -39,9 +39,9 @@ class BasicDetails extends Generic {
             {campistData.basalDosage.map((dosage, idx) => {
               return (
                 <Fragment key={JSON.stringify(idx)}>
-                  <Grid item xs={6}>
+                  <Grid item xs={2}>
                     <InsulinTextInput
-                      label="Dosis de insulina"
+                      label="Dosis"
                       onChange={this.editBasal(idx, 'dosage')}
                       value={dosage.dosage}
                     />
@@ -58,6 +58,16 @@ class BasicDetails extends Generic {
                       InputLabelProps={{
                         shrink: true
                       }}
+                    />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <TextField
+                      fullWidth
+                      label="Comentarios"
+                      margin="dense"
+                      multiline
+                      onChange={this.editBasal(idx, 'comment')}
+                      value={dosage.comment}
                     />
                   </Grid>
                   <Grid item xs={2}>
@@ -109,4 +119,4 @@ class BasicDetails extends Generic {
   }
 }
 
-export default BasicDetails;
+export default BasalDosage;

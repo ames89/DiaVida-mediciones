@@ -109,6 +109,7 @@ class GeneralInfo extends React.Component {
                 <TableRow>
                   <TableCell>Dosis de insulina</TableCell>
                   <TableCell>Hora de aplicación</TableCell>
+                  <TableCell>Comentario</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -119,6 +120,7 @@ class GeneralInfo extends React.Component {
                       <TableCell>
                         {moment(row.time, 'LT').format('h:mm a')}
                       </TableCell>
+                      <TableCell>{row.comment}</TableCell>
                     </TableRow>
                   );
                 })}
