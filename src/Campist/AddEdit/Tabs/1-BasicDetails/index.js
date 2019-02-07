@@ -62,7 +62,6 @@ class BasicDetails extends Generic {
                   min: 0,
                   step: 1
                 }}
-                required
                 type="number"
                 value={campistData.weight}
               />
